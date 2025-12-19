@@ -6,200 +6,225 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* ==================================================
-       FOOTER
-       ================================================== */
-.footer {
-  background: #111;
-  color: #ccc;
-  padding: 60px 0 30px;
-  font-size: 14px;
-}
+    :root {
+      --max-width: 900px;
+      --primary: #c59d5f;
+    }
 
-.footer .container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 20px;
-}
+    /* ================= BASE ================= */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #f4f5f7;
+      margin: 0;
+      color: #333;
+      line-height: 1.8;
+      font-size: 16px;
+    }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-.footer h3, 
-.footer h4 {
-  color: #fff;
-  margin-bottom: 15px;
-}
-
-.footer p {
-  line-height: 1.7;
-}
-
-.footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer ul li {
-  margin-bottom: 8px;
-}
-
-.social-links a {
-  display: inline-block;
-  margin-right: 12px;
-  color: #ccc;
-  text-decoration: none;
-}
-
-.social-links a:hover {
-  color: #fff;
-}
-
-.footer-bottom {
-  border-top: 1px solid #333;
-  margin-top: 40px;
-  padding-top: 20px;
-  text-align: center;
-  color: #888;
-}
-    /* ==================================================
-       HEADER – STICKY
-       ================================================== */
+    /* ================= HEADER ================= */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: white;
+      background: #fff;
       border-bottom: 1px solid #eee;
     }
 
     .header-inner {
-      max-width: var(--max-width);
-      margin: auto;
-      padding: 15px 20px;
+      padding: 12px 16px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .logo {
-      font-family: var(--title-font);
-      font-size: 1.4rem;
+      font-size: 1.2rem;
+      font-weight: 600;
       letter-spacing: 1px;
+      text-align: center;
     }
 
     .nav {
       display: flex;
-      gap: 25px;
+      justify-content: space-between;
     }
 
     .nav a {
-      font-size: 0.9rem;
-      font-weight: 500;
+      font-size: 14px;
+      padding: 6px 4px;
     }
 
-    /* Mobile header */
-    @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-      }
-
-      .nav {
-        width: 100%;
-        justify-content: space-around;
-        padding-top: 10px;
-      }
-    }
-
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background-color: #f7f7f7;
-      margin: 0;
-      padding: 0;
-      line-height: 1.7;
-      color: #333;
-    }
-
+    /* ================= BLOG ================= */
     .blog-container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      background: #fff;
+      margin: 16px;
+      padding: 20px 18px;
+      border-radius: 12px;
     }
 
     .blog-header h1 {
-      font-size: 32px;
+      font-size: 22px;
+      line-height: 1.4;
       margin-bottom: 10px;
     }
 
     .blog-meta {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 30px;
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 20px;
     }
 
     .blog-image {
-      margin: 30px 0;
+      margin: 24px 0;
       text-align: center;
     }
 
     .blog-image img {
-      max-width: 100%;
-      border-radius: 10px;
+      width: 100%;
+      border-radius: 12px;
     }
 
     .blog-image span {
-      display: block;
-      font-size: 14px;
+      font-size: 13px;
       color: #777;
-      margin-top: 8px;
-    }
-
-    h2 {
-      margin-top: 40px;
-      font-size: 24px;
-      color: #222;
+      margin-top: 6px;
+      display: block;
     }
 
     p {
-      margin: 15px 0;
+      margin: 16px 0;
       font-size: 16px;
     }
 
+    h2 {
+      margin-top: 32px;
+      font-size: 19px;
+      line-height: 1.4;
+      color: #222;
+    }
+
     ul {
-      margin: 15px 0 15px 20px;
+      padding-left: 18px;
+      margin: 16px 0;
     }
 
     ul li {
       margin-bottom: 10px;
+      font-size: 15.5px;
     }
 
     .highlight {
-      background: #f1f3f5;
-      padding: 20px;
-      border-left: 4px solid #c59d5f;
-      border-radius: 6px;
-      margin: 30px 0;
+      background: #f6f7f8;
+      padding: 16px;
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      margin: 28px 0;
+      font-size: 15.5px;
     }
 
-    .blog-footer {
-      margin-top: 50px;
+    /* ================= FOOTER ================= */
+    .footer {
+      background: #111;
+      color: #ccc;
+      padding: 40px 0 20px;
       font-size: 14px;
-      color: #777;
+      margin-top: 60px;
+    }
+
+    .footer .container {
+      padding: 0 16px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer ul li {
+      margin-bottom: 8px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin-right: 12px;
+      color: #ccc;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      margin-top: 30px;
+      padding-top: 16px;
       text-align: center;
-      border-top: 1px solid #eee;
-      padding-top: 20px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    /* ================= TABLET & PC ================= */
+    @media (min-width: 768px) {
+      body {
+        font-size: 17px;
+      }
+
+      .header-inner {
+        max-width: var(--max-width);
+        margin: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 16px 20px;
+      }
+
+      .logo {
+        text-align: left;
+        font-size: 1.4rem;
+      }
+
+      .nav {
+        gap: 24px;
+      }
+
+      .blog-container {
+        margin: 40px auto;
+        padding: 36px;
+        max-width: var(--max-width);
+      }
+
+      .blog-header h1 {
+        font-size: 30px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .footer-grid {
+        max-width: 1200px;
+        margin: auto;
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
   </style>
 </head>
 
 <body>
+
   <!-- ================= HEADER ================= -->
   <header>
     <div class="header-inner">
@@ -213,9 +238,9 @@
     </div>
   </header>
 
+  <!-- ================= BLOG ================= -->
   <div class="blog-container">
 
-    <!-- Header -->
     <div class="blog-header">
       <h1>Cấu Tạo Môi – Hiểu Đúng Để Chăm Sóc Và Làm Đẹp Hiệu Quả</h1>
       <div class="blog-meta">
@@ -223,18 +248,15 @@
       </div>
     </div>
 
-    <!-- Image 1 -->
     <div class="blog-image">
       <img src="your-image-here.jpg" alt="Cấu tạo môi">
       <span>Hình minh họa cấu tạo môi (chèn ảnh sau)</span>
     </div>
 
-    <!-- Content -->
     <p>
       Môi là một trong những bộ phận quan trọng và nhạy cảm nhất trên khuôn mặt.
       Không chỉ đóng vai trò trong giao tiếp, biểu cảm, môi còn ảnh hưởng lớn đến
-      thẩm mỹ tổng thể. Việc hiểu rõ cấu tạo môi sẽ giúp bạn chăm sóc và làm đẹp môi
-      một cách an toàn và hiệu quả hơn.
+      thẩm mỹ tổng thể.
     </p>
 
     <h2>1. Cấu trúc tổng quan của môi</h2>
@@ -244,23 +266,22 @@
     </p>
 
     <ul>
-      <li><strong>Da môi:</strong> Mỏng hơn da mặt, hầu như không có tuyến bã nhờn.</li>
-      <li><strong>Lớp cơ vòng môi:</strong> Giúp môi cử động linh hoạt khi nói và biểu cảm.</li>
-      <li><strong>Niêm mạc môi:</strong> Phần bên trong môi, có độ ẩm cao.</li>
-      <li><strong>Mạch máu:</strong> Dày đặc, tạo nên màu sắc tự nhiên của môi.</li>
+      <li><strong>Da môi:</strong> Mỏng hơn da mặt, hầu như không có tuyến bã nhờn</li>
+      <li><strong>Cơ vòng môi:</strong> Giúp môi cử động linh hoạt</li>
+      <li><strong>Niêm mạc:</strong> Phần bên trong môi</li>
+      <li><strong>Mạch máu:</strong> Quyết định màu sắc môi</li>
     </ul>
 
-    <!-- Image 2 -->
     <div class="blog-image">
       <img src="your-image-here.jpg" alt="Các lớp cấu tạo môi">
-      <span>Sơ đồ các lớp cấu tạo của môi (chèn ảnh sau)</span>
+      <span>Sơ đồ các lớp cấu tạo môi (chèn ảnh sau)</span>
     </div>
 
     <h2>2. Vì sao môi dễ khô và thâm?</h2>
     <p>
-      Do không có tuyến bã nhờn, môi rất dễ bị mất nước. Ngoài ra, tác động từ môi trường
-      như ánh nắng, gió, khói bụi hay thói quen liếm môi thường xuyên cũng khiến môi
-      nhanh khô và thâm sạm.
+      Do không có tuyến bã nhờn, môi rất dễ mất nước.
+      Tác động từ ánh nắng, gió, khói bụi hay thói quen liếm môi
+      cũng khiến môi nhanh xuống sắc.
     </p>
 
     <div class="highlight">
@@ -268,72 +289,63 @@
       và nhẹ nhàng hơn so với da mặt.
     </div>
 
-    <h2>3. Ứng dụng hiểu biết cấu tạo môi trong làm đẹp</h2>
-    <p>
-      Hiểu rõ cấu tạo môi giúp lựa chọn phương pháp chăm sóc và thẩm mỹ phù hợp,
-      chẳng hạn như dưỡng môi, phun xăm thẩm mỹ, hoặc phục hồi môi sau tổn thương.
-    </p>
-
+    <h2>3. Ứng dụng trong chăm sóc & làm đẹp</h2>
     <ul>
-      <li>Dưỡng ẩm thường xuyên bằng son dưỡng chuyên dụng</li>
+      <li>Dưỡng môi chuyên sâu mỗi ngày</li>
       <li>Tẩy tế bào chết môi định kỳ</li>
-      <li>Bảo vệ môi khỏi ánh nắng bằng sản phẩm có SPF</li>
-      <li>Lựa chọn kỹ thuật thẩm mỹ môi an toàn, phù hợp cấu trúc môi</li>
+      <li>Bảo vệ môi khỏi tia UV</li>
+      <li>Chọn liệu trình thẩm mỹ phù hợp cấu trúc môi</li>
     </ul>
 
   </div>
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <div class="container footer-grid">
 
-    <!-- Brand / About -->
-    <div class="footer-col">
-      <h3>Le Sapphire</h3>
-      <p>
-        Nơi chăm sóc sắc đẹp toàn diện với liệu trình phun môi cao cấp,
-        mang đến trải nghiệm thẩm mỹ – an toàn – hiệu quả.
-      </p>
-    </div>
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer-grid">
 
-    <!-- Contact -->
-    <div class="footer-col">
-      <h4>Liên hệ</h4>
-      <ul>
-        <li>📍 161/13 Cộng Hòa, Phường 12 <br>Quận Tân Bình, TP. HCM</br></li>
-        <li>📞 0567 811 468</li>
-        <li>✉️ le.sapphire.pmu@gmail.com</li>
-      </ul>
-    </div>
-
-    <!-- Services -->
-    <div class="footer-col">
-      <h4>Dịch vụ</h4>
-      <ul>
-        <li>Phun xăm môi</li>
-        <li>Khử thâm môi</li>
-      </ul>
-    </div>
-
-    <!-- Social / Time -->
-    <div class="footer-col">
-      <h4>Giờ mở cửa</h4>
-      <p>Thứ 2 – CN: 09:00 – 18:00</p>
-<br>
-
-      <h4>Kết nối</h4>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">TikTok</a>
+      <div>
+        <h3>Le Sapphire</h3>
+        <p>
+          Chăm sóc sắc đẹp toàn diện với liệu trình phun môi cao cấp,
+          an toàn – tinh tế – bền màu.
+        </p>
       </div>
+
+      <div>
+        <h4>Liên hệ</h4>
+        <ul>
+          <li>📍 161/13 Cộng Hòa, Q. Tân Bình</li>
+          <li>📞 0567 811 468</li>
+          <li>✉️ le.sapphire.pmu@gmail.com</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Dịch vụ</h4>
+        <ul>
+          <li>Phun xăm môi</li>
+          <li>Khử thâm môi</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Giờ mở cửa</h4>
+        <p>09:00 – 18:00 (Thứ 2 – CN)</p>
+        <h4>Kết nối</h4>
+        <div class="social-links">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+        </div>
+      </div>
+
     </div>
 
-  </div>
+    <div class="footer-bottom">
+      <p>© 2025 Le Sapphire. All rights reserved.</p>
+      <p>Minimal • Professional • Modern</p>
+    </div>
+  </footer>
 
-  <div class="footer-bottom">
-    <p>© 2025 Le Sapphire. All rights reserved.</p>
-    <p>Minimal • Professional • Modern</p>
-  </div>
-</footer>
 </body>
 </html>

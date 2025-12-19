@@ -2,23 +2,45 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Cấu Tạo Môi – Hiểu Đúng Để Chăm Sóc Và Làm Đẹp</title>
+  <title>Cấu tạo môi – Le Sapphire PMU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- ================= GOOGLE FONTS ================= -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
+    /* ==================================================
+       ROOT VARIABLES – SAME AS INDEX
+       ================================================== */
     :root {
-      --max-width: 900px;
-      --primary: #c59d5f;
+      --main-font: 'Inter', sans-serif;
+      --title-font: 'Playfair Display', serif;
+
+      --bg-color: #fafafa;
+      --primary-color: #1c1c1c;
+      --accent-color: #c7a27c;
+      --text-muted: #777;
+
+      --radius: 14px;
+      --max-width: 1200px;
     }
 
-    /* ================= BASE ================= */
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background-color: #f4f5f7;
+    * {
       margin: 0;
-      color: #333;
-      line-height: 1.8;
-      font-size: 16px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--main-font);
+      background: var(--bg-color);
+      color: var(--primary-color);
+      line-height: 1.7;
+    }
+
+    img {
+      width: 100%;
+      display: block;
     }
 
     a {
@@ -26,136 +48,167 @@
       color: inherit;
     }
 
-    /* ================= HEADER ================= */
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: auto;
+    }
+
+    /* ==================================================
+       HEADER – SAME AS INDEX
+       ================================================== */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: #fff;
+      background: white;
       border-bottom: 1px solid #eee;
     }
 
     .header-inner {
-      padding: 12px 16px;
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 15px 20px;
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
     }
 
     .logo {
-      font-size: 1.2rem;
-      font-weight: 600;
+      font-family: var(--title-font);
+      font-size: 1.4rem;
       letter-spacing: 1px;
-      text-align: center;
     }
 
     .nav {
       display: flex;
-      justify-content: space-between;
+      gap: 25px;
     }
 
     .nav a {
-      font-size: 14px;
-      padding: 6px 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
     }
 
-    /* ================= BLOG ================= */
-    .blog-container {
-      background: #fff;
-      margin: 16px;
-      padding: 20px 18px;
-      border-radius: 12px;
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+      }
+
+      .nav {
+        width: 100%;
+        justify-content: space-around;
+        padding-top: 10px;
+      }
     }
 
-    .blog-header h1 {
-      font-size: 22px;
-      line-height: 1.4;
+    /* ==================================================
+       BLOG PAGE STYLE (MATCH INDEX SCALE)
+       ================================================== */
+    .blog-wrapper {
+      background: white;
+      border-radius: var(--radius);
+      padding: 50px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    @media (max-width: 768px) {
+      .blog-wrapper {
+        padding: 25px;
+      }
+    }
+
+    .blog-title {
+      font-family: var(--title-font);
+      font-size: 2.2rem;
       margin-bottom: 10px;
     }
 
     .blog-meta {
-      font-size: 13px;
-      color: #777;
-      margin-bottom: 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    .blog-wrapper p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .blog-wrapper h2 {
+      font-family: var(--title-font);
+      font-size: 1.6rem;
+      margin: 40px 0 15px;
+    }
+
+    .blog-wrapper ul {
+      padding-left: 18px;
+      margin-bottom: 25px;
+    }
+
+    .blog-wrapper li {
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-size: 0.95rem;
     }
 
     .blog-image {
-      margin: 24px 0;
-      text-align: center;
-    }
-
-    .blog-image img {
-      width: 100%;
-      border-radius: 12px;
-    }
-
-    .blog-image span {
-      font-size: 13px;
-      color: #777;
-      margin-top: 6px;
-      display: block;
-    }
-
-    p {
-      margin: 16px 0;
-      font-size: 16px;
-    }
-
-    h2 {
-      margin-top: 32px;
-      font-size: 19px;
-      line-height: 1.4;
-      color: #222;
-    }
-
-    ul {
-      padding-left: 18px;
-      margin: 16px 0;
-    }
-
-    ul li {
-      margin-bottom: 10px;
-      font-size: 15.5px;
+      margin: 35px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
     }
 
     .highlight {
-      background: #f6f7f8;
-      padding: 16px;
-      border-left: 4px solid var(--primary);
-      border-radius: 8px;
-      margin: 28px 0;
-      font-size: 15.5px;
+      background: #f6f5f3;
+      border-left: 4px solid var(--accent-color);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 35px 0;
+      font-size: 0.95rem;
+      color: var(--primary-color);
     }
 
-    /* ================= FOOTER ================= */
+    /* ==================================================
+       FOOTER – SAME AS INDEX
+       ================================================== */
     .footer {
       background: #111;
       color: #ccc;
-      padding: 40px 0 20px;
+      padding: 60px 0 30px;
       font-size: 14px;
-      margin-top: 60px;
     }
 
     .footer .container {
-      padding: 0 16px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
     }
 
     .footer h3,
     .footer h4 {
       color: #fff;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer p {
+      line-height: 1.7;
     }
 
     .footer ul {
       list-style: none;
       padding: 0;
-      margin: 0;
     }
 
     .footer ul li {
@@ -168,184 +221,143 @@
       color: #ccc;
     }
 
-    .footer-bottom {
-      border-top: 1px solid #333;
-      margin-top: 30px;
-      padding-top: 16px;
-      text-align: center;
-      font-size: 13px;
-      color: #888;
+    .social-links a:hover {
+      color: #fff;
     }
 
-    /* ================= TABLET & PC ================= */
-    @media (min-width: 768px) {
-      body {
-        font-size: 17px;
-      }
-
-      .header-inner {
-        max-width: var(--max-width);
-        margin: auto;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 16px 20px;
-      }
-
-      .logo {
-        text-align: left;
-        font-size: 1.4rem;
-      }
-
-      .nav {
-        gap: 24px;
-      }
-
-      .blog-container {
-        margin: 40px auto;
-        padding: 36px;
-        max-width: var(--max-width);
-      }
-
-      .blog-header h1 {
-        font-size: 30px;
-      }
-
-      h2 {
-        font-size: 24px;
-      }
-
-      .footer-grid {
-        max-width: 1200px;
-        margin: auto;
-        grid-template-columns: repeat(4, 1fr);
-      }
+    .footer-bottom {
+      border-top: 1px solid #333;
+      margin-top: 40px;
+      padding-top: 20px;
+      text-align: center;
+      color: #888;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ================= HEADER ================= -->
-  <header>
-    <div class="header-inner">
-      <div class="logo">LE SAPPHIRE</div>
-      <nav class="nav">
-        <a href="#">Trang chủ</a>
-        <a href="#">Dịch vụ</a>
-        <a href="#">Chia sẻ</a>
-        <a href="#">Liên hệ</a>
-      </nav>
-    </div>
-  </header>
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="header-inner">
+    <div class="logo">LE SAPPHIRE</div>
+    <nav class="nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="#">Dịch vụ</a>
+      <a href="#">Chia sẻ</a>
+      <a href="#">Liên hệ</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- ================= BLOG ================= -->
-  <div class="blog-container">
+<!-- ================= BLOG CONTENT ================= -->
+<section>
+  <div class="container">
+    <div class="blog-wrapper">
 
-    <div class="blog-header">
-      <h1>Cấu Tạo Môi – Hiểu Đúng Để Chăm Sóc Và Làm Đẹp Hiệu Quả</h1>
+      <h1 class="blog-title">Cấu tạo môi – Hiểu đúng để chăm sóc & làm đẹp</h1>
       <div class="blog-meta">
-        Ngày đăng: 19/12/2025 • Chuyên mục: Kiến Thức Làm Đẹp
+        19/12/2025 • Kiến thức phun xăm
+      </div>
+
+      <div class="blog-image">
+        <img src="your-image-here.jpg" alt="Cấu tạo môi">
+      </div>
+
+      <p>
+        Môi là một trong những bộ phận nhạy cảm và quan trọng nhất trên khuôn mặt.
+        Việc hiểu rõ cấu tạo môi giúp lựa chọn phương pháp chăm sóc và thẩm mỹ an toàn,
+        hiệu quả và lâu dài.
+      </p>
+
+      <h2>1. Cấu trúc tổng quan của môi</h2>
+      <p>
+        Về mặt giải phẫu, môi bao gồm nhiều lớp khác nhau từ ngoài vào trong,
+        mỗi lớp giữ một vai trò riêng biệt.
+      </p>
+
+      <ul>
+        <li><strong>Da môi:</strong> rất mỏng, không có tuyến bã nhờn</li>
+        <li><strong>Cơ vòng môi:</strong> giúp môi cử động linh hoạt</li>
+        <li><strong>Niêm mạc môi:</strong> giữ độ ẩm tự nhiên</li>
+        <li><strong>Hệ mạch máu:</strong> quyết định màu sắc môi</li>
+      </ul>
+
+      <div class="blog-image">
+        <img src="your-image-here.jpg" alt="Các lớp cấu tạo môi">
+      </div>
+
+      <h2>2. Vì sao môi dễ khô & thâm?</h2>
+      <p>
+        Do thiếu tuyến dầu tự nhiên, môi rất dễ mất nước.
+        Tác động từ ánh nắng, mỹ phẩm kém chất lượng hoặc thói quen sinh hoạt
+        không phù hợp đều ảnh hưởng trực tiếp đến sắc môi.
+      </p>
+
+      <div class="highlight">
+        <strong>Lưu ý:</strong> Môi cần được chăm sóc riêng biệt,
+        không nên dùng chung sản phẩm với da mặt.
+      </div>
+
+      <h2>3. Ứng dụng trong phun xăm & chăm sóc môi</h2>
+      <ul>
+        <li>Lựa chọn kỹ thuật phun phù hợp cấu trúc môi</li>
+        <li>Dưỡng môi trước và sau phun xăm</li>
+        <li>Bảo vệ môi khỏi tia UV</li>
+        <li>Phục hồi môi đúng quy trình</li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <div>
+      <h3>Le Sapphire</h3>
+      <p>
+        Nơi chăm sóc sắc đẹp toàn diện với liệu trình phun môi cao cấp,
+        an toàn – tinh tế – hiệu quả.
+      </p>
+    </div>
+
+    <div>
+      <h4>Liên hệ</h4>
+      <ul>
+        <li>📍 161/13 Cộng Hòa, Q. Tân Bình</li>
+        <li>📞 0567 811 468</li>
+        <li>✉️ le.sapphire.pmu@gmail.com</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Dịch vụ</h4>
+      <ul>
+        <li>Phun xăm môi</li>
+        <li>Khử thâm môi</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Giờ mở cửa</h4>
+      <p>09:00 – 18:00 (Thứ 2 – CN)</p>
+      <h4>Kết nối</h4>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
       </div>
     </div>
-
-    <div class="blog-image">
-      <img src="your-image-here.jpg" alt="Cấu tạo môi">
-      <span>Hình minh họa cấu tạo môi (chèn ảnh sau)</span>
-    </div>
-
-    <p>
-      Môi là một trong những bộ phận quan trọng và nhạy cảm nhất trên khuôn mặt.
-      Không chỉ đóng vai trò trong giao tiếp, biểu cảm, môi còn ảnh hưởng lớn đến
-      thẩm mỹ tổng thể.
-    </p>
-
-    <h2>1. Cấu trúc tổng quan của môi</h2>
-    <p>
-      Về mặt giải phẫu, môi được cấu tạo từ nhiều lớp khác nhau, bao gồm da, cơ,
-      niêm mạc và hệ thống mạch máu – thần kinh phong phú.
-    </p>
-
-    <ul>
-      <li><strong>Da môi:</strong> Mỏng hơn da mặt, hầu như không có tuyến bã nhờn</li>
-      <li><strong>Cơ vòng môi:</strong> Giúp môi cử động linh hoạt</li>
-      <li><strong>Niêm mạc:</strong> Phần bên trong môi</li>
-      <li><strong>Mạch máu:</strong> Quyết định màu sắc môi</li>
-    </ul>
-
-    <div class="blog-image">
-      <img src="your-image-here.jpg" alt="Các lớp cấu tạo môi">
-      <span>Sơ đồ các lớp cấu tạo môi (chèn ảnh sau)</span>
-    </div>
-
-    <h2>2. Vì sao môi dễ khô và thâm?</h2>
-    <p>
-      Do không có tuyến bã nhờn, môi rất dễ mất nước.
-      Tác động từ ánh nắng, gió, khói bụi hay thói quen liếm môi
-      cũng khiến môi nhanh xuống sắc.
-    </p>
-
-    <div class="highlight">
-      <strong>Lưu ý:</strong> Môi là vùng da nhạy cảm, cần được chăm sóc riêng biệt
-      và nhẹ nhàng hơn so với da mặt.
-    </div>
-
-    <h2>3. Ứng dụng trong chăm sóc & làm đẹp</h2>
-    <ul>
-      <li>Dưỡng môi chuyên sâu mỗi ngày</li>
-      <li>Tẩy tế bào chết môi định kỳ</li>
-      <li>Bảo vệ môi khỏi tia UV</li>
-      <li>Chọn liệu trình thẩm mỹ phù hợp cấu trúc môi</li>
-    </ul>
 
   </div>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="footer">
-    <div class="container footer-grid">
-
-      <div>
-        <h3>Le Sapphire</h3>
-        <p>
-          Chăm sóc sắc đẹp toàn diện với liệu trình phun môi cao cấp,
-          an toàn – tinh tế – bền màu.
-        </p>
-      </div>
-
-      <div>
-        <h4>Liên hệ</h4>
-        <ul>
-          <li>📍 161/13 Cộng Hòa, Q. Tân Bình</li>
-          <li>📞 0567 811 468</li>
-          <li>✉️ le.sapphire.pmu@gmail.com</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Dịch vụ</h4>
-        <ul>
-          <li>Phun xăm môi</li>
-          <li>Khử thâm môi</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Giờ mở cửa</h4>
-        <p>09:00 – 18:00 (Thứ 2 – CN)</p>
-        <h4>Kết nối</h4>
-        <div class="social-links">
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-          <a href="#">TikTok</a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p>© 2025 Le Sapphire. All rights reserved.</p>
-      <p>Minimal • Professional • Modern</p>
-    </div>
-  </footer>
+  <div class="footer-bottom">
+    <p>© 2025 Le Sapphire. All rights reserved.</p>
+    <p>Minimal • Professional • Modern</p>
+  </div>
+</footer>
 
 </body>
 </html>

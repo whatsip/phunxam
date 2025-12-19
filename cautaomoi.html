@@ -6,6 +6,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    /* ==================================================
+       FOOTER
+       ================================================== */
+.footer {
+  background: #111;
+  color: #ccc;
+  padding: 60px 0 30px;
+  font-size: 14px;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.footer h3, 
+.footer h4 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.footer p {
+  line-height: 1.7;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 8px;
+}
+
+.social-links a {
+  display: inline-block;
+  margin-right: 12px;
+  color: #ccc;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  color: #888;
+}
+    /* ==================================================
+       HEADER – STICKY
+       ================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      font-family: var(--title-font);
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Mobile header */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+      }
+
+      .nav {
+        width: 100%;
+        justify-content: space-around;
+        padding-top: 10px;
+      }
+    }
+
     body {
       font-family: "Segoe UI", Arial, sans-serif;
       background-color: #f7f7f7;
@@ -91,6 +200,18 @@
 </head>
 
 <body>
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">LE SAPPHIRE</div>
+      <nav class="nav">
+        <a href="#">Trang chủ</a>
+        <a href="#">Dịch vụ</a>
+        <a href="#">Chia sẻ</a>
+        <a href="#">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
 
   <div class="blog-container">
 
@@ -160,12 +281,59 @@
       <li>Lựa chọn kỹ thuật thẩm mỹ môi an toàn, phù hợp cấu trúc môi</li>
     </ul>
 
-    <!-- Footer -->
-    <div class="blog-footer">
-      © 2025 Spa Beauty Studio • Kiến thức làm đẹp & chăm sóc da
+  </div>
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <!-- Brand / About -->
+    <div class="footer-col">
+      <h3>Le Sapphire</h3>
+      <p>
+        Nơi chăm sóc sắc đẹp toàn diện với liệu trình phun môi cao cấp,
+        mang đến trải nghiệm thẩm mỹ – an toàn – hiệu quả.
+      </p>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-col">
+      <h4>Liên hệ</h4>
+      <ul>
+        <li>📍 161/13 Cộng Hòa, Phường 12 <br>Quận Tân Bình, TP. HCM</br></li>
+        <li>📞 0567 811 468</li>
+        <li>✉️ le.sapphire.pmu@gmail.com</li>
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <div class="footer-col">
+      <h4>Dịch vụ</h4>
+      <ul>
+        <li>Phun xăm môi</li>
+        <li>Khử thâm môi</li>
+      </ul>
+    </div>
+
+    <!-- Social / Time -->
+    <div class="footer-col">
+      <h4>Giờ mở cửa</h4>
+      <p>Thứ 2 – CN: 09:00 – 18:00</p>
+<br>
+
+      <h4>Kết nối</h4>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
     </div>
 
   </div>
 
+  <div class="footer-bottom">
+    <p>© 2025 Le Sapphire. All rights reserved.</p>
+    <p>Minimal • Professional • Modern</p>
+  </div>
+</footer>
 </body>
 </html>

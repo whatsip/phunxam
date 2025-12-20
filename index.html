@@ -329,11 +329,63 @@ html {
       z-index: 9999;
     }
 
+/* ================= SANTA FLY + SPARKLE TRAIL ================= */
+.santa-fly {
+  position: fixed;
+  bottom: 10%;
+  left: -300px;
+  width: 200px;
+  z-index: 9998;
+  pointer-events: none;
+  animation: santaFlyDiagonal 14s ease-in-out forwards;
+  filter: drop-shadow(0 10px 20px rgba(255,255,255,0.4));
+}
+@keyframes santaFlyDiagonal {
+  0% {
+    transform: translate(0, 0) scale(0.95) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(50vw, -30vh) scale(1) rotate(-8deg);
+  }
+  100% {
+    transform: translate(calc(100vw + 500px), -60vh) scale(1.05) rotate(-12deg);
+    opacity: 1;
+  }
+}
+
+
+/* Sparkle */
+.sparkle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0.6) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkleFade 1.5s ease-out forwards;
+  z-index: 9997;
+}
+
+@keyframes sparkleFade {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+
+    
   </style>
 </head>
 
 <body id="top">
 
+<img src="santa.gif" alt="Santa Flying" class="santa-fly" id="santaFly">
+  
 <!-- SNOW CANVAS -->
 <canvas id="snow-canvas"></canvas>
 
@@ -569,9 +621,43 @@ html {
   }
 </script>
 
+<script>
+  if (!localStorage.getItem('santaShown')) {
+    localStorage.setItem('santaShown', 'true');
+
+    const santa = document.getElementById('santaFly');
+
+    // Sparkle trail theo Santa
+    const sparkleInterval = setInterval(() => {
+      const rect = santa.getBoundingClientRect();
+
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+
+      sparkle.style.left = rect.left + 30 + Math.random() * 20 + 'px';
+      sparkle.style.top = rect.top + rect.height / 2 + Math.random() * 20 + 'px';
+
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => sparkle.remove(), 1500);
+    }, 120);
+
+    // Dọn sạch sau khi bay xong
+    setTimeout(() => {
+      clearInterval(sparkleInterval);
+      santa.remove();
+    }, 14500);
+
+  } else {
+    const santa = document.getElementById('santaFly');
+    if (santa) santa.remove();
+  }
+</script>
+  
 </body>
 
 </html>
+
 
 
 

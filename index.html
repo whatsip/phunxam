@@ -70,12 +70,21 @@
     p {
       color: var(--text-muted);
       font-size: 0.95rem;
+
     }
-    p1 {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      text-align: center;
-      text-align: center;
+
+  .p2 {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #999;
+  letter-spacing: 0.6px;
+}
+
+    /* FIX OFFSET FOR STICKY HEADER */
+    #services,
+    #share,
+    #contact {
+      scroll-margin-top: 90px;
     }
     /* ==================================================
        IMAGE RATIO SYSTEM
@@ -306,22 +315,38 @@
   text-align: center;
   color: #888;
 }
+html {
+  scroll-behavior: smooth;
+}
+    /* ================= SNOW EFFECT ================= */
+    #snow-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
 
   </style>
 </head>
 
-<body>
+<body id="top">
+
+<!-- SNOW CANVAS -->
+<canvas id="snow-canvas"></canvas>
 
   <!-- ================= HEADER ================= -->
   <header>
     <div class="header-inner">
       <div class="logo">LE SAPPHIRE</div>
-      <nav class="nav">
-        <a href="#">Trang chủ</a>
-        <a href="#">Dịch vụ</a>
-        <a href="#">Chia sẻ</a>
-        <a href="#">Liên hệ</a>
-      </nav>
+<nav class="nav">
+  <a href="#top">Trang chủ</a>
+  <a href="#services">Dịch vụ</a>
+  <a href="#share">Chia sẻ</a>
+  <a href="#contact">Liên hệ</a>
+</nav>
     </div>
   </header>
 
@@ -348,10 +373,10 @@
  </section>
 
   <!-- ================= GALLERY ================= -->
-  <section>
+  <section id="services">
     <div class="container">
       <h2>HÌNH ẢNH DỊCH VỤ</h2>
-      <p1>Natural care crafted with elegance.</p1>
+      <p class="p2">Natural care crafted with elegance.</p>
 
       <div class="gallery-grid">
         <div class="gallery-item">
@@ -389,10 +414,10 @@
   </section>
 
  <!-- ================= BLOG ================= -->
-<section>
+<section id="share">
   <div class="container">
     <h2>CHIA SẺ VỀ PHUN XĂM</h2>
-    <p1>Stories, tips & inspiration.</p1>
+    <p class="p2">Stories, tips & inspiration.</p>
 
     <div class="blog-grid">
       <a href="cautaomoi.html" class="blog-card">
@@ -437,7 +462,7 @@
   </section>
 
 <!-- ================= FOOTER ================= -->
-<footer class="footer">
+<footer class="footer" id="contact">
   <div class="container footer-grid">
 
     <!-- Brand / About -->
@@ -502,7 +527,51 @@
     }, 4000);
   </script>
 
+<!-- ================= SNOW SCRIPT ================= -->
+<script>
+  if (!localStorage.getItem('snowShown')) {
+    localStorage.setItem('snowShown', 'true');
+
+    const canvas = document.getElementById('snow-canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let snowflakes = [];
+    for (let i = 0; i < 120; i++) {
+      snowflakes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 3 + 1,
+        d: Math.random() + 0.5
+      });
+    }
+
+    function drawSnow() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(255,255,255,0.8)';
+      ctx.beginPath();
+      snowflakes.forEach(f => {
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        f.y += f.d * 2;
+        if (f.y > canvas.height) f.y = 0;
+      });
+      ctx.fill();
+    }
+
+    const snowInterval = setInterval(drawSnow, 30);
+    setTimeout(() => {
+      clearInterval(snowInterval);
+      canvas.remove();
+    }, 8000);
+  }
+</script>
+
 </body>
+
 </html>
+
 
 

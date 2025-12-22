@@ -570,79 +570,70 @@ html {
 
 <!-- ================= SNOW SCRIPT ================= -->
 <script>
-  if (!localStorage.getItem('snowShown')) {
-    localStorage.setItem('snowShown', 'true');
+  const canvas = document.getElementById('snow-canvas');
+  const ctx = canvas.getContext('2d');
 
-    const canvas = document.getElementById('snow-canvas');
-    const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let snowflakes = [];
-    for (let i = 0; i < 120; i++) {
-      snowflakes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 3 + 1,
-        d: Math.random() + 0.5
-      });
-    }
-
-    function drawSnow() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(255,255,255,0.8)';
-      ctx.beginPath();
-      snowflakes.forEach(f => {
-        ctx.moveTo(f.x, f.y);
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        f.y += f.d * 2;
-        if (f.y > canvas.height) f.y = 0;
-      });
-      ctx.fill();
-    }
-
-    const snowInterval = setInterval(drawSnow, 30);
-    setTimeout(() => {
-      clearInterval(snowInterval);
-      canvas.remove();
-    }, 8000);
+  let snowflakes = [];
+  for (let i = 0; i < 120; i++) {
+    snowflakes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 3 + 1,
+      d: Math.random() + 0.5
+    });
   }
+
+  function drawSnow() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.beginPath();
+    snowflakes.forEach(f => {
+      ctx.moveTo(f.x, f.y);
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      f.y += f.d * 2;
+      if (f.y > canvas.height) f.y = 0;
+    });
+    ctx.fill();
+  }
+
+  const snowInterval = setInterval(drawSnow, 30);
+
+  setTimeout(() => {
+    clearInterval(snowInterval);
+    canvas.remove();
+  }, 8000);
 </script>
 
 <script>
-  if (!localStorage.getItem('santaShown')) {
-    localStorage.setItem('santaShown', 'true');
+  const santa = document.getElementById('santaFly');
 
-    const santa = document.getElementById('santaFly');
+  // Sparkle trail
+  const sparkleInterval = setInterval(() => {
+    const rect = santa.getBoundingClientRect();
 
-    // Sparkle trail theo Santa
-    const sparkleInterval = setInterval(() => {
-      const rect = santa.getBoundingClientRect();
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
 
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
+    sparkle.style.left = rect.left + 30 + Math.random() * 20 + 'px';
+    sparkle.style.top = rect.top + rect.height / 2 + Math.random() * 20 + 'px';
 
-      sparkle.style.left = rect.left + 30 + Math.random() * 20 + 'px';
-      sparkle.style.top = rect.top + rect.height / 2 + Math.random() * 20 + 'px';
+    document.body.appendChild(sparkle);
 
-      document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1500);
+  }, 120);
 
-      setTimeout(() => sparkle.remove(), 1500);
-    }, 120);
-
-    // Dọn sạch sau khi bay xong
-    setTimeout(() => {
-      clearInterval(sparkleInterval);
-      santa.remove();
-    }, 14500);
-
-  } else {
-    const santa = document.getElementById('santaFly');
-    if (santa) santa.remove();
-  }
+  // Cleanup
+  setTimeout(() => {
+    clearInterval(sparkleInterval);
+    santa.remove();
+  }, 14500);
 </script>
+
   
 </body>
 
 </html>
+

@@ -87,7 +87,25 @@
   color: #999;
   letter-spacing: 0.6px;
 }
+    
+.mobile-break {
+  display: none;
+}
 
+@media (max-width: 768px) {
+  .mobile-break {
+    display: inline;
+  }
+}
+
+.section-divider {
+  width: 100%;
+  height: 2px;
+  background: #111;
+  margin: 50px 0;
+  opacity: 0.8;
+}
+    
     /* FIX OFFSET FOR STICKY HEADER */
     #services,
     #share,
@@ -198,6 +216,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 25px;
       margin-top: 40px;
+      box-shadow: 3px 3px 15px rgba(0,0,0,0.08);
     }
 
     .gallery-item h3 {
@@ -228,6 +247,7 @@
       padding: 20px;
       border-radius: var(--radius);
       transition: transform 0.3s ease;
+      box-shadow: 3px 3px 15px rgba(0,0,0,0.08);
     }
 
     .blog-card:hover {
@@ -257,6 +277,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 40px;
       align-items: center;
+      box-shadow: 3px 3px 15px rgba(0,0,0,0.08);
     }
 
     @media (max-width: 768px) {
@@ -479,6 +500,11 @@ html {
       </div>
  </section>
 
+<div class="container">
+  <div class="section-divider"></div>
+</div>
+
+  
   <!-- ================= GALLERY ================= -->
   <section id="services">
     <div class="container">
@@ -500,10 +526,14 @@ html {
     </div>
   </section>
 
+<div class="container">
+  <div class="section-divider"></div>
+</div>
+
  <!-- ================= BLOG ================= -->
 <section id="share">
   <div class="container">
-    <h2>CHIA SẺ VỀ PHUN XĂM</h2>
+    <h2>CHIA SẺ<br class="mobile-break">VỀ PHUN XĂM</h2>
     <p class="p2">Stories, tips & inspiration.</p>
 
     <div class="blog-grid">
@@ -529,6 +559,10 @@ html {
     </div>
   </div>
 </section>
+  
+<div class="container">
+  <div class="section-divider"></div>
+</div>
 
   <!-- ================= FEATURE ================= -->
   <section>
@@ -682,5 +716,6 @@ html {
 </body>
 
 </html>
+
 
 

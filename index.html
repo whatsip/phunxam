@@ -387,10 +387,56 @@ html {
   }
 }
 
+.fb-float {
+  position: fixed;
+  bottom: 18px;
+
+  /* Giới hạn icon trong khung web */
+  right: calc((100vw - 1200px) / 2 + 18px);
+
+  width: 48px;
+  height: 48px;
+  background: #1877f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 10px 25px rgba(24,119,242,0.4);
+  z-index: 9999;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fb-float svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+
+.fb-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 30px rgba(24,119,242,0.6);
+}
+@media (max-width: 1240px) {
+  .fb-float {
+    right: 16px;
+  }
+}
     
   </style>
 </head>
 
+<a href="https://web.facebook.com/profile.php?id=61584098265979"
+   class="fb-float"
+   target="_blank"
+   aria-label="Facebook">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.6 3.5-3.6
+      1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.4 2.9h-2.2v7A10
+      10 0 0 0 22 12z"/>
+  </svg>
+</a>
+  
 <body id="top">
 
 <img src="santa.gif" alt="Santa Flying" class="santa-fly" id="santaFly">
@@ -636,4 +682,5 @@ html {
 </body>
 
 </html>
+
 

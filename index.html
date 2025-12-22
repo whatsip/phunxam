@@ -47,6 +47,7 @@
     }
 
     a {
+      font-family: var(--title-font);
       text-decoration: none;
       color: inherit;
     }
@@ -68,14 +69,21 @@
     }
 
     p {
+      font-family: var(--title-font);
       color: var(--text-muted);
       font-size: 0.95rem;
 
     }
 
   .p2 {
+  font-family: var(--title-font);
   text-align: center;
   font-size: 0.85rem;
+  color: #999;
+  letter-spacing: 0.6px;
+}
+  .p3 {
+  font-size: 1.00rem;
   color: #999;
   letter-spacing: 0.6px;
 }
@@ -139,7 +147,7 @@
 
     .logo {
       font-family: var(--title-font);
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       letter-spacing: 1px;
     }
 
@@ -187,14 +195,15 @@
        ================================================== */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 25px;
       margin-top: 40px;
     }
 
     .gallery-item h3 {
+      font-family: var(--title-font);
       margin-top: 12px;
-      font-size: 1rem;
+      font-size: 1.5rem;
       font-weight: 500;
     }
 
@@ -227,8 +236,8 @@
 
     .blog-card h3 {
       font-family: var(--title-font);
-      margin: 15px 0 10px;
-      font-size: 1.2rem;
+      margin: 1px 1 10px;
+      font-size: 1.6rem;
     }
 
     @media (max-width: 768px) {
@@ -427,39 +436,19 @@ html {
   <!-- ================= GALLERY ================= -->
   <section id="services">
     <div class="container">
-      <h2>HÌNH ẢNH DỊCH VỤ</h2>
+      <h2>DỊCH VỤ</h2>
       <p class="p2">Natural care crafted with elegance.</p>
 
       <div class="gallery-grid">
         <div class="gallery-item">
           <div class="ratio-1-1"><img src="http://whatsip.github.io/phunxam/image/moi1.jpg"></div>
-          <h3>Facial Therapy</h3>
-          <p>Gentle & effective skincare.</p>
+          <h3>KHỬ THÂM MÔI</h3>
+          <p class="p3">(Môi nguyên thủy)</p>
         </div>
         <div class="gallery-item">
-          <div class="ratio-1-1"><img src="http://whatsip.github.io/phunxam/image/moi2.jpg""></div>
-          <h3>Relax Massage</h3>
-          <p>Deep relaxation experience.</p>
-        </div>
-        <div class="gallery-item">
-          <div class="ratio-1-1"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef"></div>
-          <h3>Body Care</h3>
-          <p>Luxury rituals.</p>
-        </div>
-        <div class="gallery-item">
-          <div class="ratio-1-1"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883"></div>
-          <h3>Aroma Therapy</h3>
-          <p>Pure essential oils.</p>
-        </div>
-        <div class="gallery-item">
-          <div class="ratio-1-1"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874"></div>
-          <h3>Skin Treatment</h3>
-          <p>Professional care.</p>
-        </div>
-        <div class="gallery-item">
-          <div class="ratio-1-1"><img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8"></div>
-          <h3>Natural Beauty</h3>
-          <p>Simple & elegant.</p>
+          <div class="ratio-1-1"><img src="http://whatsip.github.io/phunxam/image/moi2.jpg"></div>
+          <h3>CHỈNH SỬA MÔI</h3>
+          <p>(Môi đã từng làm)</p>
         </div>
       </div>
     </div>
@@ -657,11 +646,3 @@ html {
 </body>
 
 </html>
-
-
-
-
-
-
-
-

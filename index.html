@@ -614,11 +614,13 @@ html {
   <div class="footer-bottom">
     <p>© 2025 Le Sapphire. All rights reserved.</p>
     <p>Minimal • Professional • Modern</p>
-    <div class="traffic">
-  <p>👁 Đang truy cập: <span id="online">0</span></p>
-  <p>📅 Hôm nay: <span id="today">0</span></p>
-  <p>📊 Tổng truy cập: <span id="total">0</span></p>
+    
+<div id="traffic" style="font-size:14px;line-height:1.6;">
+  👁 Đang truy cập: <b><span id="online">0</span></b><br>
+  📅 Hôm nay: <b><span id="today">0</span></b><br>
+  📊 Tổng cộng: <b><span id="total">0</span></b>
 </div>
+
 
   </div>
 </footer>
@@ -749,62 +751,50 @@ html {
   window.addEventListener('touchstart', startMusic, { once: true });
 </script>
 
-  <script>
-  const siteKey = "phunmoi.asia";
-  const today = new Date().toISOString().slice(0, 10);
-  const todayKey = `${siteKey}-${today}`;
+<script>
+  const SITE = "phunmoi.asia";
+  const TODAY = new Date().toISOString().slice(0,10);
+  const uid = localStorage.getItem("uid") || crypto.randomUUID();
+  localStorage.setItem("uid", uid);
 
-  // ====== TRÁNH CỘNG 2 LẦN KHI REFRESH ======
-  if (!localStorage.getItem("visited_today")) {
-    // Tổng truy cập
-    fetch(`https://api.countapi.xyz/hit/${siteKey}/total`)
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("total").innerText = data.value;
-      });
+  // ===== TỔNG CỘNG =====
+  fetch(`https://api.countapi.xyz/hit/${SITE}/total`)
+    .then(r => r.json())
+    .then(d => total.innerText = d.value);
 
-    // Truy cập hôm nay
-    fetch(`https://api.countapi.xyz/hit/${todayKey}/visits`)
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("today").innerText = data.value;
-      });
-
-    localStorage.setItem("visited_today", today);
+  // ===== HÔM NAY (không cộng lại khi refresh) =====
+  if (localStorage.getItem("visited") !== TODAY) {
+    fetch(`https://api.countapi.xyz/hit/${SITE}-${TODAY}/today`)
+      .then(r => r.json())
+      .then(d => today.innerText = d.value);
+    localStorage.setItem("visited", TODAY);
   } else {
-    // Lấy số hiện tại (không cộng)
-    fetch(`https://api.countapi.xyz/get/${siteKey}/total`)
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("total").innerText = data.value;
-      });
-
-    fetch(`https://api.countapi.xyz/get/${todayKey}/visits`)
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("today").innerText = data.value;
-      });
+    fetch(`https://api.countapi.xyz/get/${SITE}-${TODAY}/today`)
+      .then(r => r.json())
+      .then(d => today.innerText = d.value || 1);
   }
 
-  // ====== ONLINE (ước lượng realtime) ======
-  fetch(`https://api.countapi.xyz/update/${siteKey}/online?amount=1`)
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("online").innerText = data.value;
-    });
+  // ===== ONLINE (ước lượng) =====
+  function pingOnline() {
+    fetch(`https://api.countapi.xyz/update/${SITE}-online?amount=1`);
+  }
+  function getOnline() {
+    fetch(`https://api.countapi.xyz/get/${SITE}-online`)
+      .then(r => r.json())
+      .then(d => online.innerText = d.value || 1);
+  }
 
-  // Giảm online khi rời trang
+  pingOnline();
+  getOnline();
+  setInterval(getOnline, 10000);
+
   window.addEventListener("beforeunload", () => {
     navigator.sendBeacon(
-      `https://api.countapi.xyz/update/${siteKey}/online?amount=-1`
+      `https://api.countapi.xyz/update/${SITE}-online?amount=-1`
     );
   });
-
-  // Reset visited mỗi ngày mới
-  if (localStorage.getItem("visited_today") !== today) {
-    localStorage.removeItem("visited_today");
-  }
 </script>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-128GPE8FGG"></script>
@@ -819,6 +809,7 @@ html {
 </body>
 
 </html>
+
 
 
 

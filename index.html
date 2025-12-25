@@ -614,6 +614,7 @@ html {
   <div class="footer-bottom">
     <p>© 2025 Le Sapphire. All rights reserved.</p>
     <p>Minimal • Professional • Modern</p>
+      <p>Đang truy cập: <span id="online">...</span> | Hôm nay: <span id="today">...</span>  |  Tổng truy cập: <span id="total">...</span></p>
   </div>
 </footer>
 
@@ -743,10 +744,68 @@ html {
   window.addEventListener('touchstart', startMusic, { once: true });
 </script>
 
+  <script>
+  const siteKey = "phunmoi.asia";
+  const today = new Date().toISOString().slice(0, 10);
+  const todayKey = `${siteKey}-${today}`;
+
+  // ====== TRÁNH CỘNG 2 LẦN KHI REFRESH ======
+  if (!localStorage.getItem("visited_today")) {
+    // Tổng truy cập
+    fetch(`https://api.countapi.xyz/hit/${siteKey}/total`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("total").innerText = data.value;
+      });
+
+    // Truy cập hôm nay
+    fetch(`https://api.countapi.xyz/hit/${todayKey}/visits`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("today").innerText = data.value;
+      });
+
+    localStorage.setItem("visited_today", today);
+  } else {
+    // Lấy số hiện tại (không cộng)
+    fetch(`https://api.countapi.xyz/get/${siteKey}/total`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("total").innerText = data.value;
+      });
+
+    fetch(`https://api.countapi.xyz/get/${todayKey}/visits`)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("today").innerText = data.value;
+      });
+  }
+
+  // ====== ONLINE (ước lượng realtime) ======
+  fetch(`https://api.countapi.xyz/update/${siteKey}/online?amount=1`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("online").innerText = data.value;
+    });
+
+  // Giảm online khi rời trang
+  window.addEventListener("beforeunload", () => {
+    navigator.sendBeacon(
+      `https://api.countapi.xyz/update/${siteKey}/online?amount=-1`
+    );
+  });
+
+  // Reset visited mỗi ngày mới
+  if (localStorage.getItem("visited_today") !== today) {
+    localStorage.removeItem("visited_today");
+  }
+</script>
+
   
 </body>
 
 </html>
+
 
 
 

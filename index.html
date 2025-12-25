@@ -708,10 +708,40 @@ html {
   }, 14500);
 </script>
 
+<audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function fadeInAudio(audio, duration = 2000) {
+    let step = 0.01;
+    let interval = duration / (1 / step);
+    audio.volume = 0;
+
+    const fade = setInterval(() => {
+      if (audio.volume < 0.4) {
+        audio.volume += step;
+      } else {
+        audio.volume = 0.4;
+        clearInterval(fade);
+      }
+    }, interval);
+  }
+
+  function playMusicOnScroll() {
+    audio.play().then(() => fadeInAudio(audio));
+    window.removeEventListener('scroll', playMusicOnScroll);
+  }
+
+  window.addEventListener('scroll', playMusicOnScroll, { once: true });
+</script>
+
+
   
 </body>
 
 </html>
+
 
 
 

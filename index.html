@@ -451,33 +451,6 @@ html {
       10 0 0 0 22 12z"/>
   </svg>
 </a>
-
-<audio id="bg-music" preload="auto" loop>
-  <source src="https://phunmoi.asia/music.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  audio.volume = 0;
-
-  function fadeIn() {
-    let v = 0;
-    const fade = setInterval(() => {
-      v += 0.02;
-      audio.volume = Math.min(v, 0.4);
-      if (v >= 0.4) clearInterval(fade);
-    }, 100);
-  }
-
-  function playMusic() {
-    audio.play().then(fadeIn).catch(()=>{});
-    window.removeEventListener('scroll', playMusic);
-    window.removeEventListener('touchstart', playMusic);
-  }
-
-  window.addEventListener('scroll', playMusic, { once: true });
-  window.addEventListener('touchstart', playMusic, { once: true });
-</script>
-
   
 <body id="top">
 
@@ -735,11 +708,46 @@ html {
   }, 14500);
 </script>
 
+<audio id="bg-music" preload="auto" loop>
+  <source src="https://phunmoi.asia/music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById('bg-music');
+  audio.volume = 0.4;
+
+  let started = false;
+
+  function startMusic() {
+    if (started) return;
+    started = true;
+
+    audio.load();
+
+    audio.play().then(() => {
+      console.log('🎵 Music playing');
+    }).catch(err => {
+      console.log('❌ Play failed:', err);
+    });
+
+    window.removeEventListener('scroll', startMusic);
+    window.removeEventListener('wheel', startMusic);
+    window.removeEventListener('touchstart', startMusic);
+  }
+
+  // Desktop
+  window.addEventListener('wheel', startMusic, { once: true });
+  window.addEventListener('scroll', startMusic, { once: true });
+
+  // Mobile (iOS / Android)
+  window.addEventListener('touchstart', startMusic, { once: true });
+</script>
 
   
 </body>
 
 </html>
+
 
 
 

@@ -638,34 +638,49 @@ html {
   canvas.height = window.innerHeight;
 
   let snowflakes = [];
-  for (let i = 0; i < 120; i++) {
+
+  // Giảm số lượng tuyết
+  const SNOW_COUNT = 40;
+
+  for (let i = 0; i < SNOW_COUNT; i++) {
     snowflakes.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 3 + 1,
-      d: Math.random() + 0.5
+      r: Math.random() * 2 + 1,   // tuyết nhỏ hơn
+      d: Math.random() * 0.6 + 0.3 // rơi chậm hơn
     });
   }
 
   function drawSnow() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillStyle = 'rgba(255,255,255,0.75)';
     ctx.beginPath();
+
     snowflakes.forEach(f => {
       ctx.moveTo(f.x, f.y);
       ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-      f.y += f.d * 2;
-      if (f.y > canvas.height) f.y = 0;
+
+      // tốc độ rơi chậm
+      f.y += f.d;
+
+      // rơi lại từ trên
+      if (f.y > canvas.height) {
+        f.y = -5;
+        f.x = Math.random() * canvas.width;
+      }
     });
+
     ctx.fill();
   }
 
-  const snowInterval = setInterval(drawSnow, 30);
+  const snowInterval = setInterval(drawSnow, 40);
 
+  // Dừng sau 60 giây
   setTimeout(() => {
     clearInterval(snowInterval);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     canvas.remove();
-  }, 8000);
+  }, 60000);
 </script>
 
 <script>
@@ -697,5 +712,6 @@ html {
 </body>
 
 </html>
+
 
 

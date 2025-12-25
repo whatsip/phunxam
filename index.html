@@ -614,12 +614,7 @@ html {
   <div class="footer-bottom">
     <p>© 2025 Le Sapphire. All rights reserved.</p>
     <p>Minimal • Professional • Modern</p>
-    
-<div id="traffic" style="font-size:14px;line-height:1.6;">
-  👁 Hôm nay: <b><span id="online">0</span></b><br>
-  📅 Đang truy cập: <b><span id="today">0</span></b><br>
-  📊 Tổng cộng: <b><span id="total">0</span></b>
-</div>
+  
 
   </div>
 </footer>
@@ -750,50 +745,6 @@ html {
   window.addEventListener('touchstart', startMusic, { once: true });
 </script>
 
-<script>
-  const SITE = "phunmoi.asia";
-  const TODAY = new Date().toISOString().slice(0,10);
-
-  const TOTAL_KEY  = `${SITE}:total`;
-  const TODAY_KEY  = `${SITE}:today:${TODAY}`;
-  const ONLINE_KEY = `${SITE}:online`;
-
-  // ===== TỔNG CỘNG =====
-  fetch(`https://countapi.mileshilliard.com/api/v1/hit/${TOTAL_KEY}`)
-    .then(r => r.json())
-    .then(d => total.innerText = d.value);
-
-  // ===== HÔM NAY (tránh cộng khi refresh) =====
-  if (localStorage.getItem("visited") !== TODAY) {
-    fetch(`https://countapi.mileshilliard.com/api/v1/hit/${TODAY_KEY}`)
-      .then(r => r.json())
-      .then(d => today.innerText = d.value);
-    localStorage.setItem("visited", TODAY);
-  } else {
-    fetch(`https://countapi.mileshilliard.com/api/v1/get/${TODAY_KEY}`)
-      .then(r => r.json())
-      .then(d => today.innerText = d.value || 1);
-  }
-
-  // ===== ONLINE (ước lượng) =====
-  fetch(`https://countapi.mileshilliard.com/api/v1/hit/${ONLINE_KEY}`);
-
-  function updateOnline() {
-    fetch(`https://countapi.mileshilliard.com/api/v1/get/${ONLINE_KEY}`)
-      .then(r => r.json())
-      .then(d => online.innerText = d.value || 1);
-  }
-
-  updateOnline();
-  setInterval(updateOnline, 10000);
-
-  window.addEventListener("beforeunload", () => {
-    navigator.sendBeacon(
-      `https://countapi.mileshilliard.com/api/v1/set/${ONLINE_KEY}?value=0`
-    );
-  });
-</script>
-
 
 
 <!-- Google tag (gtag.js) -->
@@ -809,6 +760,7 @@ html {
 </body>
 
 </html>
+
 
 
 

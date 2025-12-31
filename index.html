@@ -820,111 +820,128 @@ html {
 
 <canvas id="confettiCanvas"></canvas>
 
+<style>
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+</style>
+  
 <script>
-const canvas = document.getElementById("confettiCanvas");
-const ctx = canvas.getContext("2d");
+(() => {
+  const canvas = document.getElementById("confettiCanvas");
+  if (!canvas) return console.error("Canvas not found");
 
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
+  const ctx = canvas.getContext("2d");
 
-const COLORS = ["#FFD700", "#FFC400", "#FFEB99", "#FFE066"];
-const confetti = [];
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener("resize", resize);
 
-class Particle {
-  constructor(x, y, vx, vy) {
-    this.x = x;
-    this.y = y;
-    this.vx = vx;
-    this.vy = vy;
+  const COLORS = ["#FFD700", "#FFC400", "#FFEB99", "#FFE066"];
+  const particles = [];
 
-    this.w = Math.random() * 6 + 3;
-    this.h = this.w * 0.4;
+  class Confetti {
+    constructor(x, y, vx, vy) {
+      this.x = x;
+      this.y = y;
+      this.vx = vx;
+      this.vy = vy;
 
-    this.rot = Math.random() * Math.PI;
-    this.rotSpeed = (Math.random() - 0.5) * 0.3;
+      this.w = Math.random() * 6 + 3;
+      this.h = this.w * 0.4;
 
-    this.gravity = 0.28;
-    this.drag = 0.992;
-    this.opacity = 1;
-    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      this.rot = Math.random() * Math.PI;
+      this.rotSpeed = (Math.random() - 0.5) * 0.25;
+
+      this.gravity = 0.3;
+      this.drag = 0.992;
+      this.opacity = 1;
+
+      this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    }
+
+    update() {
+      this.vx *= this.drag;
+      this.vy *= this.drag;
+      this.vy += this.gravity;
+
+      this.x += this.vx;
+      this.y += this.vy;
+      this.rot += this.rotSpeed;
+
+      this.opacity -= 0.006;
+    }
+
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rot);
+      ctx.globalAlpha = Math.max(this.opacity, 0);
+      ctx.fillStyle = this.color;
+      ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
+      ctx.restore();
+    }
   }
 
-  update() {
-    this.vx *= this.drag;
-    this.vy *= this.drag;
-    this.vy += this.gravity;
+  function boom() {
+    const y = canvas.height * 0.4;
+    const force = 22;
+    const count = 140;
 
-    this.x += this.vx;
-    this.y += this.vy;
-    this.rot += this.rotSpeed;
+    for (let i = 0; i < count; i++) {
+      // left
+      particles.push(
+        new Confetti(
+          -20,
+          y,
+          Math.random() * force + force * 0.6,
+          (Math.random() - 0.5) * force
+        )
+      );
 
-    this.opacity -= 0.006;
+      // right
+      particles.push(
+        new Confetti(
+          canvas.width + 20,
+          y,
+          -(Math.random() * force + force * 0.6),
+          (Math.random() - 0.5) * force
+        )
+      );
+    }
   }
 
-  draw() {
-    ctx.save();
-    ctx.translate(this.x, this.y);
-    ctx.rotate(this.rot);
-    ctx.globalAlpha = Math.max(this.opacity, 0);
-    ctx.fillStyle = this.color;
-    ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
-    ctx.restore();
-  }
-}
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-function boomConfetti() {
-  const y = canvas.height * 0.4;
-  const force = 20;
-  const amount = 140;
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.update();
+      p.draw();
+      if (p.opacity <= 0) particles.splice(i, 1);
+    }
 
-  for (let i = 0; i < amount; i++) {
-    // LEFT cannon
-    confetti.push(
-      new Particle(
-        -20,
-        y,
-        Math.random() * force + force * 0.6,
-        (Math.random() - 0.5) * force
-      )
-    );
-
-    // RIGHT cannon
-    confetti.push(
-      new Particle(
-        canvas.width + 20,
-        y,
-        -(Math.random() * force + force * 0.6),
-        (Math.random() - 0.5) * force
-      )
-    );
-  }
-}
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for (let i = confetti.length - 1; i >= 0; i--) {
-    const p = confetti[i];
-    p.update();
-    p.draw();
-    if (p.opacity <= 0) confetti.splice(i, 1);
+    requestAnimationFrame(animate);
   }
 
-  requestAnimationFrame(animate);
-}
-
-boomConfetti();
-animate();
+  boom();
+  animate();
+})();
 </script>
 
   
 </body>
 
 </html>
+
 
 
 

@@ -524,31 +524,51 @@ html {
     overflow: hidden;
   }
 
+  .confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9997;
+    overflow: hidden;
+  }
+
   .confetti {
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 6px;
-    height: 10px;
-    background: gold;
-    opacity: 0;
+    width: 3px;        /* mỏng hơn */
+    height: 14px;
+    background: linear-gradient(
+      to bottom,
+      #ffd700,
+      #ffb700
+    );
     border-radius: 2px;
-    animation-timing-function: ease-out;
+    opacity: 0;
+    transform-origin: center;
+    animation-fill-mode: forwards;
   }
 
-  @keyframes confetti-pop {
+  /* Nổ nhanh → chậm dần → rơi */
+  @keyframes confetti-burst {
     0% {
       transform: translate(-50%, 0) rotate(0deg);
       opacity: 1;
     }
-    70% {
+    25% {
+      transform: translate(var(--x), var(--peak)) rotate(var(--r));
       opacity: 1;
     }
+    70% {
+      transform: translate(var(--x), var(--fall)) rotate(calc(var(--r) * 1.5));
+      opacity: 0.9;
+    }
     100% {
-      transform: translate(var(--x), var(--y)) rotate(var(--r));
+      transform: translate(var(--x), var(--end)) rotate(calc(var(--r) * 2));
       opacity: 0;
     }
   }
+
     
   </style>
 </head>
@@ -854,30 +874,30 @@ html {
 <div class="confetti-container" id="confettiContainer"></div>
 
 <script>
-  (function () {
+ (function () {
     const container = document.getElementById('confettiContainer');
     if (!container) return;
 
-    const confettiCount = 18; // nhỏ, nhẹ
-
-    // Delay ăn theo bao lì xì
-    const baseDelay = Math.random() * 0.6 + 0.3;
+    const confettiCount = 36; // nhiều hơn tí
+    const baseDelay = Math.random() * 0.5 + 0.4;
 
     for (let i = 0; i < confettiCount; i++) {
       const c = document.createElement('div');
       c.className = 'confetti';
 
-      // Lệch nhẹ tâm
-      const offsetX = (Math.random() * 100 - 50) + 'px';
-      const offsetY = -(Math.random() * 160 + 120) + 'px';
-      const rotate = (Math.random() * 360) + 'deg';
+      /* Cánh quạt: tỏa đều từ tâm */
+      const angle = (-40 + (80 / confettiCount) * i);
+      const distanceX = Math.sin(angle * Math.PI / 180) * (160 + Math.random() * 60);
 
-      c.style.setProperty('--x', offsetX);
-      c.style.setProperty('--y', offsetY);
-      c.style.setProperty('--r', rotate);
+      c.style.setProperty('--x', distanceX + 'px');
+      c.style.setProperty('--peak', -(220 + Math.random() * 80) + 'px');
+      c.style.setProperty('--fall', -(120 + Math.random() * 60) + 'px');
+      c.style.setProperty('--end', '20px');
+      c.style.setProperty('--r', (Math.random() * 360) + 'deg');
 
       c.style.animation = `
-        confetti-pop 1.6s ease-out ${baseDelay + Math.random() * 0.4}s
+        confetti-burst 2.4s cubic-bezier(.25,.8,.25,1)
+        ${baseDelay + Math.random() * 0.4}s
       `;
 
       container.appendChild(c);
@@ -889,6 +909,7 @@ html {
 </body>
 
 </html>
+
 
 
 

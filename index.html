@@ -437,6 +437,41 @@ html {
     right: 16px;
   }
 }
+
+
+  .lucky-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+  }
+
+  .lucky {
+    position: absolute;
+    top: -60px;
+    width: 36px; /* nhỏ để không che nội dung */
+    opacity: 0;
+    animation-timing-function: linear;
+  }
+
+  @keyframes lucky-fall {
+    0% {
+      transform: translateY(0) scale(var(--scale)) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(66vh) scale(var(--scale)) rotate(var(--rotate));
+      opacity: 0;
+    }
+  }
+
     
   </style>
 </head>
@@ -631,84 +666,6 @@ html {
     }, 4000);
   </script>
 
-<!-- ================= SNOW SCRIPT ================= -->
-<script>
-  const canvas = document.getElementById('snow-canvas');
-  const ctx = canvas.getContext('2d');
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let snowflakes = [];
-
-  // Giảm số lượng tuyết
-  const SNOW_COUNT = 40;
-
-  for (let i = 0; i < SNOW_COUNT; i++) {
-    snowflakes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 2 + 1,   // tuyết nhỏ hơn
-      d: Math.random() * 0.6 + 0.3 // rơi chậm hơn
-    });
-  }
-
-  function drawSnow() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'rgba(255,255,255,0.75)';
-    ctx.beginPath();
-
-    snowflakes.forEach(f => {
-      ctx.moveTo(f.x, f.y);
-      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-
-      // tốc độ rơi chậm
-      f.y += f.d;
-
-      // rơi lại từ trên
-      if (f.y > canvas.height) {
-        f.y = -5;
-        f.x = Math.random() * canvas.width;
-      }
-    });
-
-    ctx.fill();
-  }
-
-  const snowInterval = setInterval(drawSnow, 40);
-
-  // Dừng sau 60 giây
-  setTimeout(() => {
-    clearInterval(snowInterval);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.remove();
-  }, 60000);
-</script>
-
-<script>
-  const santa = document.getElementById('santaFly');
-
-  // Sparkle trail
-  const sparkleInterval = setInterval(() => {
-    const rect = santa.getBoundingClientRect();
-
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-
-    sparkle.style.left = rect.left + 30 + Math.random() * 20 + 'px';
-    sparkle.style.top = rect.top + rect.height / 2 + Math.random() * 20 + 'px';
-
-    document.body.appendChild(sparkle);
-
-    setTimeout(() => sparkle.remove(), 1500);
-  }, 120);
-
-  // Cleanup
-  setTimeout(() => {
-    clearInterval(sparkleInterval);
-    santa.remove();
-  }, 14500);
-</script>
 
 <audio id="bg-music" preload="auto" loop>
   <source src="https://phunmoi.asia/music.mp3" type="audio/mpeg">
@@ -756,10 +713,50 @@ html {
 
   gtag('config', 'G-128GPE8FGG');
 </script>
+
+<div class="lucky-container" id="luckyContainer"></div>
+
+<script>
+  (function () {
+    const container = document.getElementById('luckyContainer');
+    if (!container) return;
+
+    const count = Math.floor(Math.random() * 6) + 15; // 15–20 bao
+
+    for (let i = 0; i < count; i++) {
+      const lucky = document.createElement('img');
+      lucky.src = 'luckymoney.png';
+      lucky.className = 'lucky';
+
+      // Vị trí ngang random
+      lucky.style.left = Math.random() * 100 + 'vw';
+
+      // Scale nhỏ
+      const scale = (Math.random() * 0.25 + 0.35).toFixed(2);
+      lucky.style.setProperty('--scale', scale);
+
+      // Xoay nhẹ
+      const rotate = (Math.random() * 60 - 30).toFixed(1) + 'deg';
+      lucky.style.setProperty('--rotate', rotate);
+
+      // Thời gian rơi
+      lucky.style.animationDuration = (Math.random() * 3 + 4) + 's';
+
+      // Delay rơi
+      lucky.style.animationDelay = (Math.random() * 1.5) + 's';
+
+      lucky.style.animationName = 'lucky-fall';
+
+      container.appendChild(lucky);
+    }
+  })();
+</script>
+
   
 </body>
 
 </html>
+
 
 
 

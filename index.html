@@ -516,44 +516,6 @@ html {
     }
   }
 
- .confetti-container {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9997;
-    overflow: hidden;
-  }
-
-  .confetti {
-    position: absolute;
-    width: 3px;
-    height: 12px;
-    background: linear-gradient(#ffd700, #ffb700);
-    border-radius: 1px;
-    opacity: 0;
-    animation-fill-mode: forwards;
-  }
-
-  /* Bắn chéo vào tâm → lên → rơi */
-  @keyframes confetti-firework {
-    0% {
-      transform: translate(0, 0) rotate(0deg);
-      opacity: 1;
-    }
-    30% {
-      transform: translate(var(--x1), var(--y1)) rotate(var(--r1));
-      opacity: 1;
-    }
-    55% {
-      transform: translate(var(--x2), var(--y2)) rotate(var(--r2));
-      opacity: 1;
-    }
-    100% {
-      transform: translate(var(--x3), var(--y3)) rotate(var(--r3));
-      opacity: 0;
-    }
-  }
-
     
   </style>
 </head>
@@ -856,62 +818,114 @@ html {
   })();
 </script>
 
-<div class="confetti-container" id="confettiContainer"></div>
+<canvas id="confettiCanvas"></canvas>
 
 <script>
-(function () {
-  const container = document.getElementById('confettiContainer');
-  if (!container) return;
+const canvas = document.getElementById("confettiCanvas");
+const ctx = canvas.getContext("2d");
 
-  const countPerSide = 24; // mỗi bên
-  const duration = 2.8;
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
 
-  function spawn(side) {
-    for (let i = 0; i < countPerSide; i++) {
-      const c = document.createElement('div');
-      c.className = 'confetti';
+const COLORS = ["#FFD700", "#FFC400", "#FFEB99", "#FFE066"];
+const confetti = [];
 
-      // Điểm xuất phát
-      c.style.left = side === 'left' ? '0' : '100%';
-      c.style.bottom = '0';
+class Particle {
+  constructor(x, y, vx, vy) {
+    this.x = x;
+    this.y = y;
+    this.vx = vx;
+    this.vy = vy;
 
-      // Bay chéo vào tâm
-      const dir = side === 'left' ? 1 : -1;
+    this.w = Math.random() * 6 + 3;
+    this.h = this.w * 0.4;
 
-      c.style.setProperty('--x1', dir * (180 + Math.random() * 80) + 'px');
-      c.style.setProperty('--y1', -(180 + Math.random() * 80) + 'px');
+    this.rot = Math.random() * Math.PI;
+    this.rotSpeed = (Math.random() - 0.5) * 0.3;
 
-      // Lên đỉnh
-      c.style.setProperty('--x2', dir * (220 + Math.random() * 60) + 'px');
-      c.style.setProperty('--y2', -(260 + Math.random() * 80) + 'px');
-
-      // Rơi xuống (trọng lực)
-      c.style.setProperty('--x3', dir * (240 + Math.random() * 80) + 'px');
-      c.style.setProperty('--y3', '80px');
-
-      // Xoay tự nhiên
-      c.style.setProperty('--r1', Math.random() * 180 + 'deg');
-      c.style.setProperty('--r2', Math.random() * 360 + 'deg');
-      c.style.setProperty('--r3', Math.random() * 540 + 'deg');
-
-      c.style.animation = `
-        confetti-firework ${duration}s cubic-bezier(.15,.6,.25,1)
-        ${Math.random() * 0.4}s
-      `;
-
-      container.appendChild(c);
-    }
+    this.gravity = 0.28;
+    this.drag = 0.992;
+    this.opacity = 1;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
   }
 
-  spawn('left');
-  spawn('right');
-})();
+  update() {
+    this.vx *= this.drag;
+    this.vy *= this.drag;
+    this.vy += this.gravity;
+
+    this.x += this.vx;
+    this.y += this.vy;
+    this.rot += this.rotSpeed;
+
+    this.opacity -= 0.006;
+  }
+
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+    ctx.globalAlpha = Math.max(this.opacity, 0);
+    ctx.fillStyle = this.color;
+    ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
+    ctx.restore();
+  }
+}
+
+function boomConfetti() {
+  const y = canvas.height * 0.4;
+  const force = 20;
+  const amount = 140;
+
+  for (let i = 0; i < amount; i++) {
+    // LEFT cannon
+    confetti.push(
+      new Particle(
+        -20,
+        y,
+        Math.random() * force + force * 0.6,
+        (Math.random() - 0.5) * force
+      )
+    );
+
+    // RIGHT cannon
+    confetti.push(
+      new Particle(
+        canvas.width + 20,
+        y,
+        -(Math.random() * force + force * 0.6),
+        (Math.random() - 0.5) * force
+      )
+    );
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = confetti.length - 1; i >= 0; i--) {
+    const p = confetti[i];
+    p.update();
+    p.draw();
+    if (p.opacity <= 0) confetti.splice(i, 1);
+  }
+
+  requestAnimationFrame(animate);
+}
+
+boomConfetti();
+animate();
 </script>
 
   
 </body>
 
 </html>
+
 
 
 

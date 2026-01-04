@@ -757,8 +757,7 @@ header {
     }, 4000);
   </script>
 
-
-<audio id="bg-music" preload="auto" loop>
+<audio id="bg-music" preload="auto">
   <source src="https://phunmoi.asia/music.mp3" type="audio/mpeg">
 </audio>
 
@@ -768,29 +767,25 @@ header {
 
   let started = false;
 
-  function startMusic() {
+  function startMusicOnce() {
     if (started) return;
     started = true;
 
     audio.load();
+    audio.play().catch(() => {});
 
-    audio.play().then(() => {
-      console.log('🎵 Music playing');
-    }).catch(err => {
-      console.log('❌ Play failed:', err);
-    });
-
-    window.removeEventListener('scroll', startMusic);
-    window.removeEventListener('wheel', startMusic);
-    window.removeEventListener('touchstart', startMusic);
+    // Gỡ listener sau lần chạm đầu tiên
+    window.removeEventListener('touchstart', startMusicOnce);
+    window.removeEventListener('mousedown', startMusicOnce);
+    window.removeEventListener('wheel', startMusicOnce);
   }
 
-  // Desktop
-  window.addEventListener('wheel', startMusic, { once: true });
-  window.addEventListener('scroll', startMusic, { once: true });
+  // Mobile (chạm ngón tay)
+  window.addEventListener('touchstart', startMusicOnce, { once: true });
 
-  // Mobile (iOS / Android)
-  window.addEventListener('touchstart', startMusic, { once: true });
+  // Desktop
+  window.addEventListener('mousedown', startMusicOnce, { once: true });
+  window.addEventListener('wheel', startMusicOnce, { once: true });
 </script>
 
 
@@ -835,3 +830,4 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 
 </html>
+

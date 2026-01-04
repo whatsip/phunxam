@@ -450,6 +450,40 @@ header {
   background: #fafafa;
 }
 
+/* bọc item */
+.dropdown-item {
+  position: relative;
+}
+
+/* sub menu */
+.sub-menu {
+  display: none;
+  background: #fafafa;
+}
+
+.sub-menu a {
+  padding: 12px 30px;
+  font-size: 0.9rem;
+  color: #444;
+  border-bottom: 1px solid #eee;
+}
+
+/* mở submenu */
+.dropdown-item.open .sub-menu {
+  display: block;
+}
+
+/* xoay mũi tên */
+.dropdown-item.open > a i {
+  transform: rotate(180deg);
+}
+
+.simple-dropdown i {
+  transition: transform 0.25s ease;
+  cursor: pointer;
+}
+
+
 /* ===============================
    TOP BAR – RUNNING TEXT
    =============================== */
@@ -549,11 +583,51 @@ header {
     </button>
 
 <div class="simple-dropdown" id="simpleDropdown">
-  <a href="#"><span>Trang chủ</span><i>⌄</i></a>
-  <a href="#"><span>Bài viết</span><i>⌄</i></a>
-  <a href="#"><span>Thư viện</span><i>⌄</i></a>
-  <a href="#contact"><span>Liên hệ</span><i>⌄</i></a>
-  <a href="#"><span>Expert: Thanh Trúc</span><i>⌄</i></a>
+
+  <div class="dropdown-item">
+    <a href="#"><span>Trang chủ</span></a>
+  </div>
+
+  <div class="dropdown-item has-sub">
+    <a href="javascript:void(0)">
+      <span>Bài viết</span>
+      <i class="chevron">⌄</i>
+    </a>
+    <div class="sub-menu">
+      <a href="#">Bài 1</a>
+      <a href="#">Bài 2</a>
+      <a href="#">Bài 3</a>
+    </div>
+  </div>
+
+  <div class="dropdown-item has-sub">
+    <a href="javascript:void(0)">
+      <span>Thư viện</span>
+      <i class="chevron">⌄</i>
+    </a>
+    <div class="sub-menu">
+      <a href="#">Ảnh khách hàng</a>
+      <a href="#">Ảnh học viên</a>
+    </div>
+  </div>
+
+  <div class="dropdown-item">
+    <a href="#contact"><span>Liên hệ</span></a>
+  </div>
+
+  <div class="dropdown-item has-sub">
+    <a href="javascript:void(0)">
+      <span>Expert: Thanh Trúc</span>
+      <i class="chevron">⌄</i>
+    </a>
+    <div class="sub-menu">
+      <a href="#">Giới thiệu</a>
+      <a href="#">Khóa học</a>
+    </div>
+  </div>
+
+</div>
+
 
 </div>
 
@@ -781,11 +855,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuBtn = document.querySelector(".menu-btn");
   const dropdown = document.getElementById("simpleDropdown");
 
-  if (!menuBtn || !dropdown) {
-    console.error("❌ menu-btn or dropdown not found");
-    return;
-  }
-
   menuBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     dropdown.classList.toggle("show");
@@ -793,9 +862,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", () => {
     dropdown.classList.remove("show");
+    document.querySelectorAll(".dropdown-item").forEach(i => i.classList.remove("open"));
+  });
+
+  // bấm vào CẢ DÒNG (chữ + mũi tên) để mở submenu
+  dropdown.querySelectorAll(".has-sub > a").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault(); // không chuyển trang
+      e.stopPropagation();
+
+      const item = link.closest(".dropdown-item");
+
+      // nếu muốn chỉ mở 1 submenu tại 1 thời điểm
+      document.querySelectorAll(".dropdown-item").forEach(i => {
+        if (i !== item) i.classList.remove("open");
+      });
+
+      item.classList.toggle("open");
+    });
   });
 });
 </script>
+
 
 <script src="script/firecracker.js"></script>
 <script src="script/confetti.js"></script>
@@ -805,5 +893,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 
 </html>
+
 
 

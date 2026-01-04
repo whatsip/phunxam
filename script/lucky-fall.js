@@ -6,7 +6,7 @@
 
   for (let i = 0; i < count; i++) {
     const lucky = document.createElement('img');
-    lucky.src = 'img/luckymoney.png';
+    lucky.src = 'asset/luckymoney.png';
     lucky.className = 'lucky';
 
     // Vị trí ngang random

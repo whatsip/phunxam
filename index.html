@@ -9,6 +9,9 @@
        GOOGLE FONTS
        ======================= -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- ASSET SEASON === -->
+  <link rel="stylesheet" href="css/firecracker.css">
 
   <style>
     /* ==================================================
@@ -488,49 +491,6 @@ header {
     }
   }
 
-  .firecracker {
-    position: fixed;
-    top: 0;
-    width: 90px;
-    z-index: 9998;
-    pointer-events: none;
-    opacity: 0;
-    animation-fill-mode: forwards;
-  }
-
-  .firecracker.left {
-    left: 10px;
-    transform-origin: top center;
-  }
-
-  .firecracker.right {
-    right: 10px;
-    transform-origin: top center;
-  }
-
-  @keyframes firecracker-hang {
-    0% {
-      opacity: 0;
-      transform: rotate(0deg);
-    }
-    10% {
-      opacity: 1;
-    }
-    40% {
-      transform: rotate(2deg);
-    }
-    60% {
-      transform: rotate(-2deg);
-    }
-    80% {
-      opacity: 1;
-      transform: rotate(1deg);
-    }
-    100% {
-      opacity: 0;
-      transform: rotate(0deg);
-    }
-  }
 
 .simple-dropdown {
   position: absolute;
@@ -640,7 +600,6 @@ header {
   </svg>
 </a>
 
-
 <a href="https://web.facebook.com/profile.php?id=61584098265979"
    class="fb-float"
    target="_blank"
@@ -653,6 +612,10 @@ header {
 </a>
   
 <body id="top">
+
+  <!-- ================= ASSET SEASON =========== -->
+ <img src="asset/firecracker.gif" class="firecracker left" id="firecrackerLeft">
+ <img src="asset/firecracker.gif" class="firecracker right" id="firecrackerRight">
 
   <!-- ================= HEADER ================= -->
 <header>
@@ -949,27 +912,6 @@ header {
   })();
 </script>
 
-<img src="firecracker.gif" class="firecracker left" id="firecrackerLeft">
-<img src="firecracker.gif" class="firecracker right" id="firecrackerRight">
-
-<script>
-  (function () {
-    const left = document.getElementById('firecrackerLeft');
-    const right = document.getElementById('firecrackerRight');
-
-    if (!left || !right) return;
-
-    // Timing ăn theo bao lì xì
-    const delay = Math.random() * 0.8; // delay nhẹ
-    const duration = 6; // gần bằng thời gian rơi
-
-    [left, right].forEach(el => {
-      el.style.animation = `
-        firecracker-hang ${duration}s ease-in-out ${delay}s
-      `;
-    });
-  })();
-</script>
 
 <canvas id="confettiCanvas"></canvas>
 
@@ -1272,6 +1214,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script src="script/firecracker.js"></script>
+  
 </body>
 
 </html>
+

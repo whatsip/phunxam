@@ -139,39 +139,69 @@
     /* ==================================================
        HEADER – STICKY
        ================================================== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: white;
-      border-bottom: 1px solid #eee;
-    }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  border-bottom: 1px solid #eee;
 
-    .header-inner {
-      max-width: var(--max-width);
-      margin: auto;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
+  position: relative; /* 🔴 THIS WAS MISSING */
+}
 
-    .logo {
-      font-family: var(--title-font);
-      font-size: 1.8rem;
-      letter-spacing: 1px;
-    }
+.header-inner {
+  position: relative; /* 🔴 anchor dropdown here */
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 15px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
 
-    .nav {
-      display: flex;
-      gap: 25px;
-    }
+.logo {
+  justify-self: left;
+  font-family: var(--title-font);
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin-left: 10px
+}
+
+.nav {
+  display: flex;
+  gap: 25px;
+  justify-self: end;
+}
 
     .nav a {
       font-size: 0.9rem;
       font-weight: 500;
     }
+
+.menu-btn {
+  width: 34px;
+  height: 19px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: -10px
+}
+
+.menu-btn span {
+  height: 1px;
+  width: 100%;
+  background: #1c1c1c;
+  border-radius: 1px;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* hide nav, show dropdown later */
+  }
+}
 
     /* Mobile header */
     @media (max-width: 768px) {
@@ -502,6 +532,100 @@
     }
   }
 
+.simple-dropdown {
+  position: absolute;
+  top: 70px;
+  left: 0; /* align with container, not viewport */
+  width: 300px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  padding: 6px 0;
+  display: none;
+  z-index: 9999;
+}
+
+.simple-dropdown.show {
+  display: block;
+}
+
+/* Menu items */
+.simple-dropdown a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 20px;
+  font-family: var(--main-font);
+  font-size: 0.95rem;
+  color: #111;
+
+  border-bottom: 1px solid #eee;
+}
+
+.simple-dropdown a:last-child {
+  border-bottom: none;
+}
+
+/* Chevron */
+.simple-dropdown i {
+  font-style: normal;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Hover */
+.simple-dropdown a:hover {
+  background: #fafafa;
+}
+
+/* ===============================
+   TOP BAR – RUNNING TEXT
+   =============================== */
+.top-bar {
+  width: 100%;
+  background: #FFF9F5;
+  overflow: hidden;
+}
+
+.top-bar-inner {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.top-bar-inner a {
+  display: inline-block;
+  font-family: var(--title-font);
+  font-size: 1.1rem;
+  color: #111;
+  text-align: center;
+  padding-left: 100%;
+  animation: marquee 14s linear infinite;
+}
+
+/* Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Mobile tuning */
+@media (max-width: 768px) {
+  .top-bar-inner a {
+    font-size: 0.8rem;
+    animation-duration: 12s;
+  }
+}
+
+
+
     
   </style>
 </head>
@@ -531,17 +655,54 @@
 <body id="top">
 
   <!-- ================= HEADER ================= -->
-  <header>
-    <div class="header-inner">
-      <div class="logo">LE SAPPHIRE</div>
-<nav class="nav">
-  <a href="#top">Trang chủ</a>
-  <a href="#services">Dịch vụ</a>
-  <a href="#share">Chia sẻ</a>
-  <a href="#contact">Liên hệ</a>
-</nav>
-    </div>
-  </header>
+<header>
+  <div class="header-inner header-grid">
+    
+    <!-- Left: Menu button -->
+    <button class="menu-btn" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+<div class="simple-dropdown" id="simpleDropdown">
+  <a href="#"><span>Pigments</span><i>⌄</i></a>
+  <a href="#"><span>Machines & Power Extras</span><i>⌄</i></a>
+  <a href="#"><span>Cartridges</span><i>⌄</i></a>
+  <a href="#"><span>Blades</span><i>⌄</i></a>
+  <a href="#"><span>Prep & Aftercare</span><i>⌄</i></a>
+  <a href="#"><span>Numbing</span><i>⌄</i></a>
+  <a href="#"><span>Props, Tools & Accessories</span><i>⌄</i></a>
+  <a href="#"><span>Skin, Hair & Makeup</span><i>⌄</i></a>
+  <a href="#"><span>Microneedling</span><i>⌄</i></a>
+  <a href="#"><span>Lashes</span><i>⌄</i></a>
+  <a href="#"><span>Henna Brows</span><i>⌄</i></a>
+  <a href="#"><span>PMU Samples</span></a>
+</div>
+
+    <!-- Center: Logo -->
+    <div class="logo">LE SAPPHIRE</div>
+
+    <!-- Right: Navigation -->
+    <nav class="nav">
+      <a href="#top">Trang chủ</a>
+      <a href="#services">Dịch vụ</a>
+      <a href="#share">Chia sẻ</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ===== TOP BAR / ANNOUNCEMENT ===== -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <a href="http://phunmoi.asia/" target="_blank">
+      ✨ Ưu đãi tháng này – Inbox Fanpage để được tư vấn miễn phí ✨
+    </a>
+  </div>
+</div>
+
 
   <!-- ================= SLIDER (16:9) ================= -->
 <section>
@@ -1090,29 +1251,27 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-  
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.querySelector(".menu-btn");
+  const dropdown = document.getElementById("simpleDropdown");
+
+  if (!menuBtn || !dropdown) {
+    console.error("❌ menu-btn or dropdown not found");
+    return;
+  }
+
+  menuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("show");
+  });
+
+  document.addEventListener("click", () => {
+    dropdown.classList.remove("show");
+  });
+});
+</script>
+
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

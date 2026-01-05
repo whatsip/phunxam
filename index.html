@@ -960,38 +960,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchBox = document.querySelector(".header-search");
   const toggleBtn = document.querySelector(".search-toggle");
   const input = document.querySelector(".search-input");
-  const articles = document.querySelectorAll(".blog-card");
+  const blogSection = document.getElementById("share");
+  const articles = blogSection ? blogSection.querySelectorAll(".blog-card") : [];
+
+  if (!input || articles.length === 0) return;
 
   // Toggle search
   toggleBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     searchBox.classList.toggle("active");
-    if (searchBox.classList.contains("active")) {
-      input.focus();
-    }
+    input.focus();
   });
 
-  // Click outside → close
+  // Không đóng khi click input
+  input.addEventListener("click", e => e.stopPropagation());
+
+  // Click ngoài → đóng
   document.addEventListener("click", () => {
     searchBox.classList.remove("active");
     input.value = "";
     articles.forEach(a => a.style.display = "");
   });
 
-  // Prevent close when typing
-  input.addEventListener("click", e => e.stopPropagation());
-
-  // Search logic
+  // SEARCH
   input.addEventListener("input", () => {
-    const keyword = input.value.toLowerCase();
+    const keyword = input.value.trim().toLowerCase();
 
     articles.forEach(card => {
-      const text = card.innerText.toLowerCase();
-      card.style.display = text.includes(keyword) ? "" : "none";
+      const text = card.textContent.toLowerCase();
+      card.style.display = text.includes(keyword) ? "block" : "none";
     });
   });
 });
 </script>
+
 
 
 <script src="script/firecracker.js"></script>
@@ -1002,6 +1004,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 
 </html>
+
 
 
 

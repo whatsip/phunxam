@@ -528,6 +528,64 @@ header {
     animation-duration: 12s;
   }
 }
+
+/* ===============================
+   HEADER SEARCH
+   =============================== */
+.header-search {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-toggle {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.search-input {
+  width: 0;
+  opacity: 0;
+  margin-left: 1px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.25s ease;
+  font-family: var(--main-font);
+}
+
+.header-search.active .search-input {
+  width: 180px;
+  opacity: 1;
+}
+.search-icon {
+  width: 18px;
+  height: 18px;
+  stroke: #1c1c1c;
+  stroke-width: 1.7;
+  fill: none;
+  transition: stroke 0.25s ease, transform 0.25s ease;
+}
+
+/* hover tinh tế */
+.search-toggle:hover .search-icon {
+  stroke: var(--accent-color);
+  transform: scale(1.05);
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .header-search.active .search-input {
+    width: 140px;
+  }
+}
     
   </style>
 </head>
@@ -629,6 +687,25 @@ header {
 </div>
     <!-- Center: Logo -->
     <div class="logo">LE SAPPHIRE</div>
+
+<div class="header-search">
+<button class="search-toggle" aria-label="Search">
+  <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="11" cy="11" r="7"></circle>
+    <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+  </svg>
+</button>
+
+
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Tìm bài viết..."
+    aria-label="Search articles"
+  >
+</div>
+
+    
 </header>
 
 <!-- ===== TOP BAR / ANNOUNCEMENT ===== -->
@@ -878,6 +955,44 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBox = document.querySelector(".header-search");
+  const toggleBtn = document.querySelector(".search-toggle");
+  const input = document.querySelector(".search-input");
+  const articles = document.querySelectorAll(".blog-card");
+
+  // Toggle search
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    searchBox.classList.toggle("active");
+    if (searchBox.classList.contains("active")) {
+      input.focus();
+    }
+  });
+
+  // Click outside → close
+  document.addEventListener("click", () => {
+    searchBox.classList.remove("active");
+    input.value = "";
+    articles.forEach(a => a.style.display = "");
+  });
+
+  // Prevent close when typing
+  input.addEventListener("click", e => e.stopPropagation());
+
+  // Search logic
+  input.addEventListener("input", () => {
+    const keyword = input.value.toLowerCase();
+
+    articles.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(keyword) ? "" : "none";
+    });
+  });
+});
+</script>
+
 
 <script src="script/firecracker.js"></script>
 <script src="script/confetti.js"></script>
@@ -887,6 +1002,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 
 </html>
+
 
 
 

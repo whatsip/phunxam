@@ -586,6 +586,48 @@ header {
     width: 140px;
   }
 }
+
+.search-suggest {
+  position: absolute;
+  top: 38px;
+  right: 0;
+  width: 280px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+  overflow: hidden;
+  display: none;
+  z-index: 9999;
+}
+
+.search-suggest.show {
+  display: block;
+}
+
+.search-suggest a {
+  display: block;
+  padding: 12px 16px;
+  font-family: var(--main-font);
+  font-size: 0.9rem;
+  color: #111;
+  border-bottom: 1px solid #eee;
+}
+
+.search-suggest a:last-child {
+  border-bottom: none;
+}
+
+.search-suggest a:hover {
+  background: #fafafa;
+}
+
+/* keyword highlight */
+.search-suggest mark {
+  background: none;
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
     
   </style>
 </head>
@@ -703,6 +745,8 @@ header {
     placeholder="Tìm bài viết..."
     aria-label="Search articles"
   >
+  <div class="search-suggest" id="searchSuggest"></div>
+
 </div>
 
     
@@ -957,43 +1001,97 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
   const searchBox = document.querySelector(".header-search");
   const toggleBtn = document.querySelector(".search-toggle");
   const input = document.querySelector(".search-input");
-  const blogSection = document.getElementById("share");
-  const articles = blogSection ? blogSection.querySelectorAll(".blog-card") : [];
+  const suggestBox = document.getElementById("searchSuggest");
 
-  if (!input || articles.length === 0) return;
+  if (!searchBox || !toggleBtn || !input || !suggestBox) return;
 
-  // Toggle search
+  const posts = [
+    {
+      title: "Cấu Tạo Môi",
+      content: "Môi gồm biểu bì, trung bì, mao mạch",
+      url: "cautaomoi.html"
+    },
+    {
+      title: "Dấu Vân Môi",
+      content: "Dấu vân môi là đặc điểm sinh học",
+      url: "#"
+    },
+    {
+      title: "Mực Phun Xăm Khi Vào Cơ Thể",
+      content: "Phản ứng của mực phun xăm trong da",
+      url: "#"
+    }
+  ];
+
+  /* =========================
+     TOGGLE ICON 🔍
+     ========================= */
   toggleBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     searchBox.classList.toggle("active");
-    input.focus();
+
+    if (searchBox.classList.contains("active")) {
+      input.focus();
+    } else {
+      input.value = "";
+      suggestBox.classList.remove("show");
+      suggestBox.innerHTML = "";
+    }
   });
 
-  // Không đóng khi click input
-  input.addEventListener("click", e => e.stopPropagation());
-
-  // Click ngoài → đóng
-  document.addEventListener("click", () => {
-    searchBox.classList.remove("active");
-    input.value = "";
-    articles.forEach(a => a.style.display = "");
-  });
-
-  // SEARCH
+  /* =========================
+     SEARCH GỢI Ý
+     ========================= */
   input.addEventListener("input", () => {
     const keyword = input.value.trim().toLowerCase();
+    suggestBox.innerHTML = "";
 
-    articles.forEach(card => {
-      const text = card.textContent.toLowerCase();
-      card.style.display = text.includes(keyword) ? "block" : "none";
+    if (!keyword) {
+      suggestBox.classList.remove("show");
+      return;
+    }
+
+    const results = posts.filter(p =>
+      p.title.toLowerCase().includes(keyword) ||
+      p.content.toLowerCase().includes(keyword)
+    );
+
+    if (results.length === 0) {
+      suggestBox.classList.remove("show");
+      return;
+    }
+
+    results.slice(0, 5).forEach(post => {
+      const regex = new RegExp(`(${keyword})`, "gi");
+      const title = post.title.replace(regex, "<mark>$1</mark>");
+
+      const item = document.createElement("a");
+      item.href = post.url;
+      item.innerHTML = `📄 ${title}`;
+      suggestBox.appendChild(item);
     });
+
+    suggestBox.classList.add("show");
   });
+
+  /* =========================
+     CLICK NGOÀI → ĐÓNG
+     ========================= */
+  document.addEventListener("click", () => {
+    searchBox.classList.remove("active");
+    suggestBox.classList.remove("show");
+    input.value = "";
+  });
+
+  input.addEventListener("click", e => e.stopPropagation());
+  suggestBox.addEventListener("click", e => e.stopPropagation());
+
 });
 </script>
-
 
 
 <script src="script/firecracker.js"></script>
@@ -1004,6 +1102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 
 </html>
+
 
 
 

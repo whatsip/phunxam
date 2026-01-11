@@ -225,6 +225,29 @@ header {
   border-radius: var(--radius);
 }
 
+/* ===============================
+   BLOG IMAGE – FULL WIDTH MOBILE
+   =============================== */
+@media (max-width: 768px) {
+
+  /* bỏ padding của section */
+  .blog-detail {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* cho ảnh tràn hết màn hình */
+  .blog-detail .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .blog-image-wrap img {
+    border-radius: 0; /* mobile nhìn sang hơn */
+  }
+}
+
+
     /* ==================================================
        FEATURE SECTION
        ================================================== */
@@ -702,19 +725,16 @@ header {
 </div>
 
 <!-- ================= BLOG DETAIL ================= -->
-<section>
+<section class="blog-detail">
   <div class="container">
 
-    <!-- Tiêu đề (nếu muốn) -->
     <h2>CẤU TẠO MÔI</h2>
     <p class="p2">Kiến thức nền tảng trong phun môi thẩm mỹ</p>
 
-    <!-- Ảnh blog dài -->
     <div class="blog-image-wrap">
       <img src="image/cautaomoi_blog.jpg" alt="Cấu tạo môi">
     </div>
-      <p class="p2">Nguồn: Sưu tầm - Thanh Trúc</p>
-    </div>
+     <p class="p2">Nguồn: Sưu tầm - Thanh Trúc</p>
   </div>
 </section>
 

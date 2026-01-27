@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   await load("header", "components/header.html");
   await load("footer", "components/footer.html");
 
-  // gọi lại JS của header sau khi DOM có thật
   if (typeof initHeader === "function") {
     initHeader();
   }

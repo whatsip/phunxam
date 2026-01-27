@@ -1,13 +1,21 @@
 :root {
   --main-font: 'Inter', sans-serif;
   --title-font: 'Playfair Display', serif;
+  --bg-color: #fafafa;
+  --primary-color: #1c1c1c;
   --accent-color: #c7a27c;
+  --radius: 14px;
+  --max-width: 1200px;
 }
 
-* { margin:0; padding:0; box-sizing:border-box }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: var(--main-font);
-  background:#fafafa;
-  color:#1c1c1c;
+  background: var(--bg-color);
+  color: var(--primary-color);
 }

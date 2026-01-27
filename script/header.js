@@ -1,37 +1,41 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initHeader() {
+
+  /* =========================
+     DROPDOWN MENU
+     ========================= */
   const menuBtn = document.querySelector(".menu-btn");
   const dropdown = document.getElementById("simpleDropdown");
 
-  menuBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle("show");
-  });
-
-  document.addEventListener("click", () => {
-    dropdown.classList.remove("show");
-    document.querySelectorAll(".dropdown-item").forEach(i => i.classList.remove("open"));
-  });
-
-  // bấm vào CẢ DÒNG (chữ + mũi tên) để mở submenu
-  dropdown.querySelectorAll(".has-sub > a").forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault(); // không chuyển trang
+  if (menuBtn && dropdown) {
+    menuBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-
-      const item = link.closest(".dropdown-item");
-
-      // nếu muốn chỉ mở 1 submenu tại 1 thời điểm
-      document.querySelectorAll(".dropdown-item").forEach(i => {
-        if (i !== item) i.classList.remove("open");
-      });
-
-      item.classList.toggle("open");
+      dropdown.classList.toggle("show");
     });
-  });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("click", () => {
+      dropdown.classList.remove("show");
+      document.querySelectorAll(".dropdown-item").forEach(i => i.classList.remove("open"));
+    });
 
+    dropdown.querySelectorAll(".has-sub > a").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const item = link.closest(".dropdown-item");
+
+        document.querySelectorAll(".dropdown-item").forEach(i => {
+          if (i !== item) i.classList.remove("open");
+        });
+
+        item.classList.toggle("open");
+      });
+    });
+  }
+
+  /* =========================
+     SEARCH
+     ========================= */
   const searchBox = document.querySelector(".header-search");
   const toggleBtn = document.querySelector(".search-toggle");
   const input = document.querySelector(".search-input");
@@ -57,9 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
-  /* =========================
-     TOGGLE ICON 🔍
-     ========================= */
   toggleBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     searchBox.classList.toggle("active");
@@ -73,9 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* =========================
-     SEARCH GỢI Ý
-     ========================= */
   input.addEventListener("input", () => {
     const keyword = input.value.trim().toLowerCase();
     suggestBox.innerHTML = "";
@@ -90,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       p.content.toLowerCase().includes(keyword)
     );
 
-    if (results.length === 0) {
+    if (!results.length) {
       suggestBox.classList.remove("show");
       return;
     }
@@ -108,9 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     suggestBox.classList.add("show");
   });
 
-  /* =========================
-     CLICK NGOÀI → ĐÓNG
-     ========================= */
   document.addEventListener("click", () => {
     searchBox.classList.remove("active");
     suggestBox.classList.remove("show");
@@ -119,5 +114,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   input.addEventListener("click", e => e.stopPropagation());
   suggestBox.addEventListener("click", e => e.stopPropagation());
-
-});
+}

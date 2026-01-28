@@ -18,20 +18,324 @@
 </head>
 
 <body>
-
+  <!-- HEADER -->
+  <div id="header"></div>
   <!-- TOPBAR -->
   <div id="topbar"></div>
 
-  <!-- HEADER -->
-  <div id="header"></div>
+ <style>
+    /* ==================================================
+       ROOT VARIABLES – EASY DESIGN CONTROL
+       ================================================== */
+    :root {
+      --main-font: 'Inter', sans-serif;
+      --title-font: 'Playfair Display', serif;
 
-  <!-- MAIN CONTENT (test đơn giản) -->
-  <main style="min-height: 60vh; padding: 40px; text-align:center;">
-    <h2>Main content test</h2>
-    <p>Chỉ để test load component</p>
+      --bg-color: #fafafa;
+      --primary-color: #1c1c1c;
+      --accent-color: #c7a27c;
+      --text-muted: #777;
 
-    <img src="test.jpg" alt="test image" style="max-width:300px;">
-  </main>
+      --radius: 14px;
+      --max-width: 1200px;
+    }
+
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--main-font);
+      background: var(--bg-color);
+      color: var(--primary-color);
+      line-height: 1.6;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      font-family: var(--title-font);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    section {
+      padding: 20px 20px;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: auto;
+    }
+
+    h2 {
+      font-family: var(--title-font);
+      font-size: 2rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    p {
+      font-family: var(--title-font);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+
+    }
+
+  .p2 {
+  font-family: var(--title-font);
+  text-align: center;
+  font-size: 0.85rem;
+  color: #999;
+  letter-spacing: 0.6px;
+}
+  .p3 {
+  font-size: 1.00rem;
+  color: #999;
+  letter-spacing: 0.6px;
+  text-align: center;
+}
+    
+.mobile-break {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-break {
+    display: inline;
+  }
+}
+
+    
+    /* FIX OFFSET FOR STICKY HEADER */
+    #services,
+    #share,
+    #contact {
+      scroll-margin-top: 90px;
+    }
+    /* ==================================================
+       IMAGE RATIO SYSTEM
+       ================================================== */
+
+    /* 16:9 – slider images */
+    .ratio-16-9 {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .ratio-16-9 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 1:1 – gallery, blog, feature images */
+    .ratio-1-1 {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .ratio-1-1 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+    /* ==================================================
+       SLIDER
+       ================================================== */
+    .slider {
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+    }
+
+    /* ==================================================
+       GALLERY GRID – 3x2
+       ================================================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .gallery-item h3 {
+      font-family: var(--title-font);
+      margin-top: 12px;
+      font-size: 1.3rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==================================================
+       BLOG GRID – 2x2
+       ================================================== */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .blog-card {
+      background: white;
+      padding: 20px;
+      border-radius: var(--radius);
+      transition: transform 0.3s ease;
+      box-shadow: 3px 3px 15px rgba(0,0,0,0.08);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .blog-card h3 {
+      font-family: var(--title-font);
+      margin: 1px 1 10px;
+      font-size: 1.6rem;
+    }
+
+    @media (max-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==================================================
+       FEATURE SECTION
+       ================================================== */
+    .feature {
+      background: white;
+      border-radius: var(--radius);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      box-shadow: 3px 3px 15px rgba(0,0,0,0.08);
+    }
+
+    @media (max-width: 768px) {
+      .feature {
+        grid-template-columns: 1fr;
+      }
+    }
+
+</style>
+  
+  <!-- ================= SLIDER (16:9) ================= -->
+<section>
+    <div class="container slider">
+      <div class="slides" id="slides">
+        <div class="slide">
+          <div class="ratio-16-9">
+            <img src="http://whatsip.github.io/phunxam/image/slide1.jpg">
+          </div>
+        </div>
+        <div class="slide">
+          <div class="ratio-16-9">
+            <img src="http://whatsip.github.io/phunxam/image/asie.jpg">
+          </div>
+        </div>
+        <div class="slide">
+          <div class="ratio-16-9">
+            <img src="http://whatsip.github.io/phunxam/image/xion.jpg">
+          </div>
+        </div>
+      </div>
+ </section>
+  
+  <!-- ================= GALLERY ================= -->
+  <section id="services">
+    <div class="container">
+      <h2>DỊCH VỤ</h2>
+      <p class="p2">Natural care crafted with elegance.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="ratio-1-1"><img src="http://whatsip.github.io/phunxam/image/moi1.jpg"></div>
+          <h3>KHỬ THÂM MÔI</h3>
+          <p class="p3">(Môi nguyên thủy)</p>
+        </div>
+        <div class="gallery-item">
+          <div class="ratio-1-1"><img src="http://whatsip.github.io/phunxam/image/moi2.jpg"></div>
+          <h3>CHỈNH SỬA MÔI</h3>
+          <p class="p3">(Môi đã từng làm)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- ================= BLOG ================= -->
+<section id="share">
+  <div class="container">
+    <h2>CHIA SẺ<br class="mobile-break"> VỀ PHUN XĂM</h2>
+    <p class="p2">Stories, tips & inspiration.</p>
+
+    <div class="blog-grid">
+      <a href="cautaomoi.html" class="blog-card">
+        <h3><strong>Cấu Tạo Môi</strong></h3>
+        <p>Bài viết chi tiết về cấu tạo môi.</p>
+      </a>
+
+      <a href="dauvanmoi.html" class="blog-card">
+        <h3><strong>Dấu Vân Môi</strong></h3>
+        <p>Bài viết chi tiết về dấu vân môi môi.</p>
+      </a>
+
+      <a href="thanhphanmucphunxam.html" class="blog-card">
+        <h3><strong>Thành Phần Mực Phun Xăm</strong></h3>
+        <p>Bài viết nghiên cứu về thành phần và cấu tạo hạt mực.</p>
+      </a>
+
+      <a href="#" class="blog-card">
+        <h3><strong></strong></h3>
+        <p>.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ================= FEATURE ================= -->
+  <section>
+    <div class="container">
+      <div class="feature">
+        <div>
+          <h2>LIÊN HỆ FANPAGE</h2>
+          <p>
+            Để được tư vấn liệu trình<br class="mobile-break"> và giải pháp cải thiện<br class="mobile-break"> đôi môi của bản thân nhé!
+          </p>
+        </div>
+        <div class="ratio-1-1">
+          <img src="http://whatsip.github.io/phunxam/image/expert1.jpg">
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <div id="footer"></div>

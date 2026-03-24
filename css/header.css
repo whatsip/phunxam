@@ -4,15 +4,13 @@
 header {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 9999;
   background: white;
   border-bottom: 1px solid #eee;
-
-  position: relative; /* 🔴 THIS WAS MISSING */
 }
 
 .header-inner {
-  position: relative; /* 🔴 anchor dropdown here */
+  position: relative;
   max-width: var(--max-width);
   margin: auto;
   padding: 15px 20px;

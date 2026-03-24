@@ -11,7 +11,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kings&display=swap" rel="stylesheet">
-
+  
+  <!-- Component CSS -->
+  <link rel="stylesheet" href="css/topbar.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
  
  <style>
     /* ==================================================
@@ -62,54 +66,6 @@
       margin: auto;
     }
 
-    /* ==================================================
-       HEADER – SAME AS INDEX
-       ================================================== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: white;
-      border-bottom: 1px solid #eee;
-    }
-
-    .header-inner {
-      max-width: var(--max-width);
-      margin: auto;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .logo {
-      font-family: var(--title-font);
-      font-size: 1.4rem;
-      letter-spacing: 1px;
-    }
-
-    .nav {
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav a {
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-      }
-
-      .nav {
-        width: 100%;
-        justify-content: space-around;
-        padding-top: 10px;
-      }
-    }
 
     /* ==================================================
        BLOG PAGE STYLE (MATCH INDEX SCALE)
@@ -187,65 +143,6 @@
       color: var(--primary-color);
     }
 
-    /* ==================================================
-       FOOTER – SAME AS INDEX
-       ================================================== */
-    .footer {
-      background: #111;
-      color: #ccc;
-      padding: 60px 0 30px;
-      font-size: 14px;
-    }
-
-    .footer .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 20px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 40px;
-    }
-
-    .footer h3,
-    .footer h4 {
-      color: #fff;
-      margin-bottom: 15px;
-    }
-
-    .footer p {
-      line-height: 1.7;
-    }
-
-    .footer ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer ul li {
-      margin-bottom: 8px;
-    }
-
-    .social-links a {
-      display: inline-block;
-      margin-right: 12px;
-      color: #ccc;
-    }
-
-    .social-links a:hover {
-      color: #fff;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid #333;
-      margin-top: 40px;
-      padding-top: 20px;
-      text-align: center;
-      color: #888;
-    }
-
 .dropcap::first-letter{
   float: left;
   font-family: var(--title-font);
@@ -266,20 +163,11 @@
 
 <body>
 
-<!-- ================= HEADER ================= -->
-<header>
-  <div class="header-inner">
-    <div class="logo">LE SAPPHIRE</div>
-    <nav class="nav">
-      <a href="index.html">Trang chủ</a>
-      <a href="#">Dịch vụ</a>
-      <a href="#">Chia sẻ</a>
-      <a href="#">Liên hệ</a>
-    </nav>
-  </div>
-</header>
+  <!-- HEADER -->
+  <div id="header"></div>
+  <!-- TOPBAR -->
+  <div id="topbar"></div>
 
-<!-- ================= BLOG CONTENT ================= -->
 <!-- ================= BLOG CONTENT ================= -->
 <section>
   <div class="container">
@@ -452,53 +340,12 @@ cơ gò má lớn và nhỏ (nông hơn so với cơ má và cơ nâng góc mi�
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <div class="container footer-grid">
+  <!-- FOOTER -->
+  <div id="footer"></div>
 
-    <div>
-      <h3>Le Sapphire</h3>
-      <p>
-        Nơi chăm sóc sắc đẹp toàn diện với liệu trình phun môi cao cấp,
-        an toàn – tinh tế – hiệu quả.
-      </p>
-    </div>
-
-    <div>
-      <h4>Liên hệ</h4>
-      <ul>
-        <li>📍 161/13 Cộng Hòa, Q. Tân Bình</li>
-        <li>📞 0567 811 468</li>
-        <li>✉️ le.sapphire.pmu@gmail.com</li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Dịch vụ</h4>
-      <ul>
-        <li>Phun xăm môi</li>
-        <li>Khử thâm môi</li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Giờ mở cửa</h4>
-      <p>09:00 – 18:00 (Thứ 2 – CN)</p>
-      <h4>Kết nối</h4>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">TikTok</a>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2025 Le Sapphire. All rights reserved.</p>
-    <p>Minimal • Professional • Modern</p>
-  </div>
-</footer>
+ <!-- SCRIPTS -->
+  <script src="script/load-components.js"></script>
+  <script src="script/header.js"></script>
 
 </body>
 </html>

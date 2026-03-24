@@ -4,7 +4,7 @@
 
 .coconut {
   position: fixed;
-  bottom: 0;
+  bottom: -10;
 
   width: 120px; /* adjust size */
 
@@ -19,7 +19,7 @@
 
   animation-delay:
     0s,
-    3.2s; /* disappear timing */
+    7.2s; /* disappear timing */
 }
 
 

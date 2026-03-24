@@ -1,0 +1,70 @@
+/* =========================
+   COCONUT CORNER STYLE
+========================= */
+
+.coconut {
+  position: fixed;
+  bottom: 0;
+
+  width: 120px; /* adjust size */
+
+  pointer-events: none;
+  z-index: 9998;
+
+  opacity: 0;
+
+  animation:
+    coconut-appear 0.6s ease-out forwards,
+    coconut-disappear 0.8s ease-in forwards;
+
+  animation-delay:
+    0s,
+    3.2s; /* disappear timing */
+}
+
+
+/* Left side */
+
+#coconut-left {
+  left: 0;
+}
+
+
+/* Right side */
+
+#coconut-right {
+  right: 0;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes coconut-appear {
+
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes coconut-disappear {
+
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+}

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Cấu tạo môi – Le Sapphire PMU</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ================= GOOGLE FONTS ================= -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kings&display=swap" rel="stylesheet">
+
+ 
+ <style>
+    /* ==================================================
+       ROOT VARIABLES – SAME AS INDEX
+       ================================================== */
+    :root {
+      --main-font: 'Inter', sans-serif;
+      --title-font: 'Playfair Display', serif;
+
+      --bg-color: #fafafa;
+      --primary-color: #1c1c1c;
+      --accent-color: #c7a27c;
+      --text-muted: #777;
+
+      --radius: 14px;
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--main-font);
+      background: var(--bg-color);
+      color: var(--primary-color);
+      line-height: 1.7;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: auto;
+    }
+
+    /* ==================================================
+       HEADER – SAME AS INDEX
+       ================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      font-family: var(--title-font);
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+      }
+
+      .nav {
+        width: 100%;
+        justify-content: space-around;
+        padding-top: 10px;
+      }
+    }
+
+    /* ==================================================
+       BLOG PAGE STYLE (MATCH INDEX SCALE)
+       ================================================== */
+    .blog-wrapper {
+      background: white;
+      border-radius: var(--radius);
+      padding: 50px;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 5px 5px 15px #DCDCDC;
+    }
+
+    @media (max-width: 768px) {
+      .blog-wrapper {
+        padding: 25px;
+      }
+    }
+
+    .blog-title {
+      font-family: var(--title-font);
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .blog-meta {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    .blog-wrapper p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+    .p2 {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      text-align: right
+    }
+
+
+    .blog-wrapper h2 {
+      font-family: var(--title-font);
+      font-size: 1.55rem;
+      margin: 40px 0 15px;
+    }
+
+    .blog-wrapper ul {
+      padding-left: 18px;
+      margin-bottom: 25px;
+    }
+
+    .blog-wrapper li {
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .blog-image {
+      margin: 35px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .highlight {
+      background: #f6f5f3;
+      border-left: 4px solid var(--accent-color);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 35px 0;
+      font-size: 0.95rem;
+      color: var(--primary-color);
+    }
+
+    /* ==================================================
+       FOOTER – SAME AS INDEX
+       ================================================== */
+    .footer {
+      background: #111;
+      color: #ccc;
+      padding: 60px 0 30px;
+      font-size: 14px;
+    }
+
+    .footer .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .footer p {
+      line-height: 1.7;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer ul li {
+      margin-bottom: 8px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin-right: 12px;
+      color: #ccc;
+    }
+
+    .social-links a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      margin-top: 40px;
+      padding-top: 20px;
+      text-align: center;
+      color: #888;
+    }
+
+.dropcap::first-letter{
+  float: left;
+  font-family: var(--title-font);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.0;
+  margin-right: 8px;
+  color: black;
+}
+
+@media (max-width: 768px){
+  .dropcap::first-letter{
+    font-size: 2.6rem;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="header-inner">
+    <div class="logo">LE SAPPHIRE</div>
+    <nav class="nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="#">Dịch vụ</a>
+      <a href="#">Chia sẻ</a>
+      <a href="#">Liên hệ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= BLOG CONTENT ================= -->
+<!-- ================= BLOG CONTENT ================= -->
+<section>
+  <div class="container">
+    <div class="blog-wrapper">
+
+      <h1 class="blog-title">Cấu Tạo Môi và Giải Phẫu Học</h1>
+      <div class="blog-meta">
+        Kiến thức giải phẫu • Ứng dụng trong thẩm mỹ và phun xăm
+      </div>
+
+      <p class="dropcap">
+        Môi là hai nếp gấp thịt bao quanh lỗ miệng. Vùng quanh miệng được giới hạn phía trên bởi các nếp gấp mũi má,
+hai bên bởi các khóe miệng và phía dưới bởi rãnh cằm môi.
+Môi được cấu tạo bởi nhiều lớp : da, mô dưới da, cơ, mô tuyến và niêm mạc.
+      </p>
+
+      <h2>I. Giải Phẫu Bề Ngoài</h2>
+      <p>
+        Môi trên kéo dài từ gốc mũi lên trên, đến gấp mũi má ở hai bên và đến mép tự do của đường viền môi ở phía dưới.
+      </p>
+      <p>
+        Môi dưới kéo dài từ mép tự do trên của đường viền môi lên trên, đến khóe miệng ở hai bên và đến xương hàm dưới ở phía dưới.
+      </p>
+      <p>
+        Xung quanh đường viền môi – da, một đường mỏng của da nhạt màu làm nổi bật sự khác biệt về màu sắc giữa môi và da bình thường. 
+      </p>
+      <p>
+        Dọc theo đường viền da môi trên, hai gờ nhô lên ở giữa của môi tạo thành cung môi. Hai cột mô thẳng đứng nhô lên tạo thành một chỗ hõm ở giữa gọi là nhân trung. Nhân trung  nằm giữa các gờ nhô lên ở giữa của môi và trụ mũi ở phía trên tạo nên sự nổi bật về cấu trúc và thẩm mỹ cho môi trên.
+      </p>
+      <p>
+Nếp gấp môi cằm chạy ngang theo hình chữ U ngược qua môi dưới, tương ứng với độ sâu của rãnh lợi trong khoang miệng.
+      </p>
+
+      <div class="blog-image">
+        <img src="/image/cautaomoi_1.jpg" alt="Mô học môi">
+      </div>
+
+      <!-- II -->
+      <h2>II. Mô Học</h2>
+      <p>
+        Từ nông đến sâu, các lớp của môi trên và môi dưới lần lượt gồm : biểu bì, mô dưới da, sợi cơ vòng môi và niêm mạc.
+Các bó sợi cơ vân dày (cơ vòng môi, cơ răng cửa trên và dưới, các cơ kéo môi trực tiếp) cùng với các phần gắn kết của chúng với da, niêm mạc hoặc các sợi cơ khác đi qua trung tâm của mỗi môi.
+      </p>
+      <p>
+        Trong mặt cắt ngang, có thể quan sát thấy các động mạch môi trên và dưới khi chúng chạy giữa các sợi cơ vòng môi và niêm mạc.
+      </p>
+      <p>
+        Vùng môi đỏ bao gồm biểu mô vảy không sừng hóa bao phủ nhiều mao mạch,
+tạo nên màu sắc đặc trưng của vùng môi đỏ. Lớp hạ bì của đường viền môi đỏ (khoảng 0,5mm) mỏng hơn sao với các vùng khác do nằm  gần cơ bên dưới.
+      </p>
+      <p>
+        Có thể quan sát thấy nhiều tuyến nước bọt nhỏ trên mặt cắt mô học của môi. 
+Các nang lông và tuyến bã nhờn nằm rãi rác khắp da môi, tuy nhiên những cấu trúc này không có nằm ở viền môi. 
+Hàm lượng Glycogen tăng dần từ da đến niêm mạc, phản ánh sự thích nghi chức năng để giữ ẩm và duy trì hàng rào.
+      </p>
+
+      <!-- III -->
+      <h2>III. Biểu Bì</h2>
+      <p>
+        Lớp biểu bì của môi là lớp ngoài cùng, bao gồm biểu mô vảy tầng.
+Không giống như da của của bộ phận khác trên cơ thể - lớp biểu bì môi mỏng hơn,
+điều này góp phần làm cho nó nhạy cảm và dễ ảnh hưởng bởi các yếu tố môi trường. 
+      </p>
+      <p>
+        Lớp biểu bì của viền môi đặt biệt độc đáo vì nó chuyển từ biểu mô vảy sừng hóa sang biểu mô vảy không sừng hóa,
+điều này rất quan trọng để duy trì độ ẩm và màu sắc.
+      </p>
+
+      <!-- IV -->
+      <h2>IV. Mô Dưới Da</h2>
+      <p>
+         Bên dưới lớp biểu bì là mô dưới da, bao gồm mô liên kết cung cấp hỗ trợ cấu trúc và độ đàn hồi.
+Lớp này tương đối thưa ở mô mỡ so với các vùng khác trên cơ thể, góp phần tạo nên sự linh hoạt và khả năng vận động của môi.
+      </p>
+      <p>
+        Lớp dưới niêm mạc chứa các tuyến nước bọt nhỏ và các cấu trúc thần kinh  mạch máu.
+Các tuyến nước bọt nhỏ chủ yếu tiết chất nhầy và được phân bố khắp mặt trong của môi, giúp bôi trơn.
+      </p>
+
+
+      <div class="blog-image">
+        <img src="https://phunmoi.asia/image/cautaomoi_2.jpg" alt="Mô học môi">
+      </div>
+
+      <!-- V -->
+      <h2>V. Cơ Vòng Môi</h2>
+      <p>
+        Cơ vòng môi tạo thành một dải liên tục gồm các sợi cơ vân bao quanh khoang miệng. Về mặt mô học, cơ này bao gồm các sợi cơ vân xen kẽ với mô liên kết, cho phép thực hiện các chuyển động phức tạp và phối hợp. Các động mạch môi trên và môi dưới chạy giữa lớp cơ này và niêm mạc, cung cấp nguồn mạch máu dồi dào cho môi.
+      </p>
+      <p>
+        Cơ vòng môi tạo thành một cơ thắt quanh miệng,  thuận tiện trong việc khép môi và ép môi vào răng khi co lại. Nó được chia thành hai phần chính: một lớp bề mặt - rìa với các sợi dọc và một lớp sâu hơn - ngoại vi với các sợi tròn. Cấu trúc phức tạp của nó cho phép các chuyển động tinh tế thông qua sự đóng góp từ các cơ quanh miệng tỏa ra. Các sợi rìa và ngoại vi phối hợp với nhau để đạt được các hoạt động học độc đáo cần thiết cho việc phát âm và biểu cảm.
+      </p>
+      <p>
+       Phần nông của cơ vòng môi nhận các sợi thần kinh từ một số cơ quanh miệng khác bám vào cơ vòng môi để tạo ra các chuyển động tinh tế của môi. Phần sâu của cơ vòng môi chịu trách nhiệm cho hoạt động cơ thắt của môi.
+      </p>
+      <p>
+Trong mặt cắt ngang, cơ vòng môi bao gồm một đoạn dài, thẳng đứng, uốn cong ra ngoài ở các mép tự do trên và dưới để tạo thành một phần nhô ra ở rìa. Các dây thần kinh má và dây thần kinh rìa hàm dưới cung cấp sự chi phối vận động cho cơ vòng môi từ bề mặt sâu của nó. Ở môi trên, các sợi cơ vòng môi bắt chéo ở đường giữa và có các điểm bám da cách đường giữa khoảng 4-5 mm về phía bên, không bao gồm vùng trung tâm. Điều này giúp da kéo vào trong tại các điểm bám da này, tạo thành các cột rãnh môi trên. Vùng trung tâm giữa các cột rãnh môi trên không có điểm bám da và bị kéo vào một chỗ lõm.
+      </p>
+
+
+      <!-- VI -->
+      <h2>VI. Niêm Mạc</h2>
+      <p>
+        Bề mặt trong của môi được lót bởi biểu mô vảy không sừng hóa với lớp liên kết bên dưới. Biểu mô này dày hơn biểu mô của viền môi, có độ dày trung bình khoảng 218 μm. Lớp mô liên kết chứa mô liên kết dày đặc với mạng lưới mao mạch phong phú. Lớp niêm mạc cũng chứa nhiều tuyến nước bọt nhỏ góp phần giữ ẩm cho khoang miệng. 
+      </p>
+
+
+
+
+
+      <!-- VII -->
+      <h2>VII. Cung Cấp Máu</h2>
+      <p>
+        Nguồn cung cấp máu cho cả hai môi bắt nguồn từ hệ thống động mạch cảnh ngoài.
+Động mạch mặt đi lên từ cổ qua phần giữa xương hàm dưới ngay phía trước chỗ bám của cơ cắn.
+Động mạch mặt phân nhánh thành động mạch dưới cằm đi qua dưới thân xương hàm dưới theo hướng trước trong.
+      </p>
+      <p>
+        Động mạch mặt đi lên trong một mặt phẳng sâu bên dưới các cơ bắp chân, cơ cười,
+cơ gò má lớn và nhỏ (nông hơn so với cơ má và cơ nâng góc miệng) – phân nhánh thành động mạc môi dưới và động mạch môi trên,
+đi bên dưới cơ vòng môi và nối thông với mạch máu đối bên.
+      </p>
+      <p>
+        Động mạch môi trên thường phân nhánh từ động mạch mặt cách khóe miệng 1,1 cm về phía bên và 0,9 cm về phía trên.
+Động mạch môi trên cung cấp máu cho môi trên, vách ngăn mũi và cánh mũi (đồng thời góp phần tạo nên các nhánh trụ mũi). 
+      </p>
+      <p>
+        Động mạch môi dưới phân nhánh từ động mạch mặt cách khóe miệng 2,6 cm về phía bên và 1,5 cm về phía dưới. 
+Động mạch môi dưới cung cấp máu cho môi dưới bằng cách chạy bên dưới cơ hạ góc miệng (cơ tam giác) và xuyên qua cơ vòng môi.
+      </p>
+
+      <div class="blog-image">
+        <img src="https://phunmoi.asia/image/cautaomoi_9.jpg" alt="Hệ mạch máu môi">
+      </div>
+
+      <!-- VIII -->
+      <h2>VIII. Các Nhóm Cơ Quanh Miệng</h2>
+      <p>Hệ cơ quanh miệng có thể được phân loại thành ba nhóm dựa trên vị trí bám.</p>
+      <p><strong>Nhóm I (Group I Muscles) - Các cơ bám vào khóe miệng:</strong></p>
+      <ul>
+        <li>Cơ vòng môi (Orbicularis oris) : cơ giúp khép miệng, chu môi và hỗ trợ nói cũng như biểu cảm khuôn mặt.</li>
+        <li>Cơ má (Buccinator) : cơ giúp ép môi và má vào răng.</li>
+        <li>Cơ nâng khóe miệng (Levator anguli oris) : cơ giúp nâng khóe miệng lên trên.</li>
+        <li>Cơ hạ khóe miệng (Depressor anguli oris) : cơ giúp hạ thấp và di chuyển khóe miệng sang bên.</li>
+        <li>Cơ gò má lớn (Zygomaticus major) : cơ giúp nâng và di chuyển khóe miệng sang bên. </li>
+        <li>Cơ cười (Risorius) : cơ mặt kéo khóe miệng sang hai bên và tạo nụ cười mỉa mai ( cơ rất khác nhau ở mỗi người và có thể không đối xứng ).</li>
+      </ul>
+
+      <p><strong>Nhóm II (Group II Muscles) - Các cơ bám vào môi trên :</strong></p>
+      <ul>
+        <li>Cơ nâng môi trên (Levator labii superioris) : cơ nâng môi trên lên.</li>
+        <li>Cơ nâng môi trên và cánh mũi (Levator labii superioris alaeque nasi) : cơ nâng môi trên và làm giãn lỗ mũi.</li>
+        <li>Cơ gò má nhỏ (Zygomaticus minor) : cơ nâng và kéo khóe miệng sang bên.</li>
+      </ul>
+
+      <p><strong>Nhóm III (Group III Muscles) - Các cơ bám vào môi dưới:</strong></p>
+      <ul>
+        <li>Cơ hạ môi dưới (Depressor labii inferioris): cơ hạ thấp và kéo nhẹ môi dưới sang bên.</li>
+        <li>Cơ cằm (Mentalis): cơ trung tâm của môi dưới, giúp nâng môi dưới lên. </li>
+        <li>Cơ bắp chân (Platysma): cơ giúp hạ môi.</li>
+      </ul>
+
+      <div class="blog-image">
+        <img src="https://phunmoi.asia/image/cautaomoi_3.png" alt="Hệ mạch máu môi">
+      </div>
+      
+      <p class="p2">Nguồn: Sưu tầm - Thanh Trúc</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <div>
+      <h3>Le Sapphire</h3>
+      <p>
+        Nơi chăm sóc sắc đẹp toàn diện với liệu trình phun môi cao cấp,
+        an toàn – tinh tế – hiệu quả.
+      </p>
+    </div>
+
+    <div>
+      <h4>Liên hệ</h4>
+      <ul>
+        <li>📍 161/13 Cộng Hòa, Q. Tân Bình</li>
+        <li>📞 0567 811 468</li>
+        <li>✉️ le.sapphire.pmu@gmail.com</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Dịch vụ</h4>
+      <ul>
+        <li>Phun xăm môi</li>
+        <li>Khử thâm môi</li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Giờ mở cửa</h4>
+      <p>09:00 – 18:00 (Thứ 2 – CN)</p>
+      <h4>Kết nối</h4>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Le Sapphire. All rights reserved.</p>
+    <p>Minimal • Professional • Modern</p>
+  </div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+

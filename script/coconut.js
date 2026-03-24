@@ -26,6 +26,6 @@
     left.remove();
     right.remove();
 
-  }, 4000);
+  }, 8000);
 
 })();

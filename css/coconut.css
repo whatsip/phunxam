@@ -4,7 +4,7 @@
 
 .coconut {
   position: fixed;
-  bottom: -10;
+  bottom: -10px;
 
   width: 120px; /* adjust size */
 

@@ -1,0 +1,85 @@
+.sectionslider {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.sectionslider__track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.sectionslider__slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.sectionslider__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Prev / Next buttons */
+.sectionslider__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+  padding: 0;
+}
+
+.sectionslider__btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.sectionslider__btn--prev {
+  left: 10px;
+}
+
+.sectionslider__btn--next {
+  right: 10px;
+}
+
+/* Dot indicators */
+.sectionslider__dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.sectionslider__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.sectionslider__dot.active {
+  background: #fff;
+  transform: scale(1.25);
+}

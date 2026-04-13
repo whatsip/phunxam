@@ -24,15 +24,7 @@
     update(); // initial call
   }
 
-  // Slider images – gentle parallax
-  applyParallax('.slider .ratio-16-9 img', 0.18);
-
   // Feature section image – slightly stronger
   applyParallax('.feature .ratio-1-1 img', 0.12);
-
-  /* ── Add parallax-scene class to slider ratios ── */
-  document.querySelectorAll('.slider .ratio-16-9').forEach(el => {
-    el.classList.add('parallax-scene');
-  });
 
 })();

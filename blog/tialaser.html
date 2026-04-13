@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tia Laser Sử Dụng Trong Xử Lí Mực Phun Xăm – Le Sapphire PMU</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ================= GOOGLE FONTS ================= -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kings&display=swap" rel="stylesheet">
+
+  <!-- Component CSS -->
+  <link rel="stylesheet" href="css/topbar.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+
+  <style>
+    /* ==================================================
+       ROOT VARIABLES – SAME AS INDEX
+       ================================================== */
+    :root {
+      --main-font: 'Inter', sans-serif;
+      --title-font: 'Playfair Display', serif;
+
+      --bg-color: #fafafa;
+      --primary-color: #1c1c1c;
+      --accent-color: #c7a27c;
+      --text-muted: #777;
+
+      --radius: 14px;
+      --max-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--main-font);
+      background: var(--bg-color);
+      color: var(--primary-color);
+      line-height: 1.7;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: auto;
+    }
+
+    /* ==================================================
+       BLOG PAGE STYLE (MATCH INDEX SCALE)
+       ================================================== */
+    .blog-wrapper {
+      background: white;
+      border-radius: var(--radius);
+      padding: 50px;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 5px 5px 15px #DCDCDC;
+    }
+
+    @media (max-width: 768px) {
+      .blog-wrapper {
+        padding: 25px;
+      }
+    }
+
+    .blog-title {
+      font-family: var(--title-font);
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .blog-subtitle {
+      font-family: var(--main-font);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+
+    .blog-meta {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    .blog-wrapper p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .p2 {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      text-align: right;
+    }
+
+    .blog-wrapper h2 {
+      font-family: var(--title-font);
+      font-size: 1.55rem;
+      margin: 40px 0 15px;
+    }
+
+    .blog-wrapper h3 {
+      font-family: var(--title-font);
+      font-size: 1.2rem;
+      margin: 28px 0 12px;
+      color: var(--primary-color);
+    }
+
+    .blog-wrapper ul {
+      padding-left: 18px;
+      margin-bottom: 25px;
+    }
+
+    .blog-wrapper li {
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .blog-wrapper li strong {
+      color: var(--primary-color);
+    }
+
+    .blog-image {
+      margin: 35px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .blog-image img {
+      border-radius: var(--radius);
+      object-fit: cover;
+      min-height: 280px;
+      background: #f0ece6;
+    }
+
+    /* Placeholder styling when image is missing */
+    .blog-image .img-placeholder {
+      width: 100%;
+      min-height: 280px;
+      background: #f6f5f3;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 0.9rem;
+      border: 2px dashed #e0d9d0;
+      letter-spacing: 0.03em;
+    }
+
+    .highlight {
+      background: #f6f5f3;
+      border-left: 4px solid var(--accent-color);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 35px 0;
+      font-size: 0.95rem;
+      color: var(--primary-color);
+    }
+
+    .highlight ul {
+      margin-bottom: 0;
+      padding-left: 18px;
+    }
+
+    .highlight li {
+      color: var(--primary-color);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .dropcap::first-letter {
+      float: left;
+      font-family: var(--title-font);
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.0;
+      margin-right: 8px;
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+      .dropcap::first-letter {
+        font-size: 2.6rem;
+      }
+    }
+
+    /* ====== COMPARISON TABLE ====== */
+    .laser-table-wrapper {
+      overflow-x: auto;
+      margin: 35px 0;
+    }
+
+    .laser-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      font-family: var(--main-font);
+    }
+
+    .laser-table thead tr {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    .laser-table thead th {
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .laser-table tbody tr {
+      border-bottom: 1px solid #ece8e2;
+    }
+
+    .laser-table tbody tr:nth-child(even) {
+      background: #faf8f5;
+    }
+
+    .laser-table tbody td {
+      padding: 12px 14px;
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    .laser-table tbody td:first-child {
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id="header"></div>
+  <!-- TOPBAR -->
+  <div id="topbar"></div>
+
+  <!-- ================= BLOG CONTENT ================= -->
+  <section>
+    <div class="container">
+      <div class="blog-wrapper">
+
+        <h1 class="blog-title">Tia Laser Sử Dụng Trong Xử Lí Mực Phun Xăm</h1>
+        <p class="blog-subtitle">Laser hay Light Amplification by Stimulated Emission of Radiation có nghĩa là "khuếch đại ánh sáng bằng phát xạ kích thích"</p>
+        <div class="blog-meta">
+          Kiến thức phun xăm thẩm mỹ • Công nghệ laser & xử lí mực
+        </div>
+
+        <!-- Intro -->
+        <p class="dropcap">
+          Tia laser được tạo ra khi các electron trong các nguyên tử trong vật liệu quang học như thuỷ tinh, tinh
+          thể hoặc khí, hấp thụ năng lượng từ dòng điện hoặc ánh sáng. Năng lượng bổ sung đó "kích thích" các
+          electron đủ di chuyển từ quỹ đạo năng lượng thấp hơn sang quỹ đạo năng lượng cao hơn xung quanh hạt
+          nhân nguyên tử gọi là chuyển dời trạng thái. Các chuyển dời có thể sinh ra hay hấp thụ lượng tử ánh
+          sáng hay photon theo thuyết lượng tử của Albert Einstein. Bước sóng của tia laser phụ thuộc vào độ
+          chênh lệch giữa các mức năng lượng của electron.
+        </p>
+
+        <!-- Cover image -->
+        <div class="blog-image">
+          <div class="img-placeholder">tialaser_image_1.jpg</div>
+        </div>
+
+        <!-- ====== SECTION I ====== -->
+        <h2>I. Ứng Dụng Tia Laser Trong Thẩm Mỹ</h2>
+
+        <p>
+          Trong phun xăm thẩm mỹ, các loại laser được lựa chọn dựa trên màu sắc mực, độ sâu và thành phần sắc
+          tố. Mỗi bước sóng laser có khả năng hấp thụ chọn lọc với từng loại mực khác nhau. Laser là phương
+          pháp tối ưu nhờ tác động chọn lọc lên sắc tố, hạn chế tổn thương mô.
+        </p>
+
+        <p>Laser hoạt động dựa trên nguyên lý quang nhiệt chọn lọc (Selective Photothermolysis):</p>
+
+        <ul>
+          <li>Tia laser phát ra bước sóng phù hợp sẽ được sắc tố mực hấp thụ mạnh</li>
+          <li>Năng lượng laser chuyển hoá thành nhiệt, làm phá vỡ hạt mực thành các mảnh nhỏ hơn</li>
+          <li>Các mảnh sắc tố sau đó được đại thực bào thu gom và đào thải qua hệ bạch huyết</li>
+          <li>Laser Pico giúp tăng hiệu quả và độ an toàn so với laser xung nano truyền thống</li>
+        </ul>
+
+        <div class="blog-image">
+          <div class="img-placeholder">tialaser_image_2.jpg</div>
+        </div>
+
+        <!-- ====== SECTION II ====== -->
+        <h2>II. Tia Laser Trong Khử Mực Đỏ Phun Xăm Thẩm Mỹ</h2>
+
+        <p>
+          Mực đỏ thường gặp ở tình trạng trổ màu, lệch tông hoặc cần chỉnh sửa kết quả phun xăm cũ.
+          Mực đỏ hấp thụ tốt các bước sóng thuộc dải xanh-lục, phổ biến gồm:
+        </p>
+
+        <ul>
+          <li>Laser 532 nm (Nd:YAG tần số đôi): là bước sóng hiệu quả nhất để xử lí mực đỏ, cam, hồng – thường dùng cho mày, môi bị trổ đỏ</li>
+          <li>Trong một số trường hợp, có thể kết hợp: Laser Pico 532 nm với xung cực ngắn, giảm tổn thương nhiệt, tăng hiệu quả phá vỡ sắc tố</li>
+        </ul>
+
+        <h3>1. Laser Nd:YAG 532 nm</h3>
+
+        <ul>
+          <li><strong>Định nghĩa:</strong> Bước sóng 532 nm (nhân đôi từ 1064 nm), tác động nông, hấp thụ mạnh bởi sắc tố màu nóng (đỏ, cam, hồng).</li>
+          <li><strong>Đặc điểm:</strong> Xuyên nông; hấp thụ tốt bởi hemoglobin và sắc tố đỏ/cam; hiệu quả với sắc tố nằm nông.</li>
+          <li><strong>Ứng dụng:</strong> Xử lý mực đỏ, cam, hồng; chỉnh mực trổ đỏ; hỗ trợ điều trị sắc tố và tổn thương mạch máu (theo chỉ định).</li>
+          <li><strong>Ưu điểm:</strong> Hiệu quả cao với màu nóng; phù hợp chỉnh sửa môi/mày lệch tông đỏ cam.</li>
+          <li><strong>Hạn chế:</strong> Dễ ảnh hưởng sắc tố bề mặt hơn 1064 nm; kém hiệu quả với mực đen/xanh đậm sâu; cần thao tác cẩn thận để tránh bỏng và tăng sắc tố.</li>
+        </ul>
+
+        <div class="blog-image">
+          <div class="img-placeholder">tialaser_image_3.jpg</div>
+        </div>
+
+        <!-- ====== SECTION III ====== -->
+        <h2>III. Tia Laser Trong Khử Mực Đen</h2>
+
+        <p>
+          Bước sóng 1064 nm (Nd:YAG) là bước sóng hiệu quả nhất trong khử mực đen do khả năng xuyên sâu tốt
+          và hấp thụ chọn lọc cao với sắc tố đen, đồng thời ít ảnh hưởng đến mô da xung quanh. Laser Pico
+          1064 nm có thể được sử dụng để tăng hiệu quả phá vỡ mực và giảm tổn thương nhiệt.
+        </p>
+
+        <h3>1. Laser Nd:YAG 1064 nm</h3>
+
+        <ul>
+          <li><strong>Định nghĩa:</strong> Laser 1064 nm (hồng ngoại gần), xuyên thấu tốt, hấp thụ mạnh bởi sắc tố tối (đen, xanh đậm).</li>
+          <li><strong>Đặc điểm:</strong> Xuyên sâu trung bì; ít ảnh hưởng melanin bề mặt; hoạt động dạng Q-switched/Pico để phá vỡ sắc tố.</li>
+          <li><strong>Ứng dụng:</strong> Xoá mực đen, xanh đậm, xám; hỗ trợ điều trị sắc tố da; có thể dùng trong triệt lông, trẻ hoá da (tuỳ chế độ).</li>
+          <li><strong>Ưu điểm:</strong> Hiệu quả cao với mực tối; phù hợp da tối màu; nguy cơ rối loạn sắc tố thấp hơn nếu thực hiện đúng.</li>
+          <li><strong>Hạn chế:</strong> Kém hiệu quả với mực đỏ, cam, vàng; cần nhiều buổi; vẫn có nguy cơ bỏng, tăng sắc tố, sẹo nếu thao tác sai.</li>
+        </ul>
+
+        <div class="blog-image">
+          <div class="img-placeholder">tialaser_image_4.jpg</div>
+        </div>
+
+        <!-- ====== SECTION IV ====== -->
+        <h2>IV. Tia Laser Trong Khử Mực Xanh</h2>
+
+        <p>
+          Bước sóng 755 nm (Alexandrite) hoặc 694 nm (Ruby) cho hiệu quả cao trong xử lý mực xanh do khả năng
+          hấp thụ phù hợp với sắc tố xanh. Trong một số trường hợp, có thể kết hợp laser Pico để tăng hiệu
+          quả phá vỡ hạt mực và hạn chế tổn thương nhiệt.
+        </p>
+
+        <h3>1. Laser Alexandrite 755 nm</h3>
+
+        <ul>
+          <li><strong>Định nghĩa:</strong> Laser 755 nm, hấp thụ tốt sắc tố màu lạnh (xanh dương, xanh lá), dùng cho mực khó đáp ứng với Nd:YAG.</li>
+          <li><strong>Đặc điểm:</strong> Xuyên sâu trung bình; hấp thụ mạnh sắc tố xanh/lạnh; hiệu quả với mực lạnh khó xử lý.</li>
+          <li><strong>Ứng dụng:</strong> Xoá mực xanh, xanh lá; hỗ trợ ca mực lạnh không đáp ứng 1064 nm; có thể dùng triệt lông (tuỳ chế độ).</li>
+          <li><strong>Ưu điểm:</strong> Hiệu quả cao với màu lạnh; bổ sung tốt trong xoá mực đa màu.</li>
+          <li><strong>Hạn chế:</strong> Kém hơn 1064 nm với mực đen sâu; có nguy cơ rối loạn sắc tố nếu thao tác sai; hiệu quả phụ thuộc thành phần mực.</li>
+        </ul>
+
+        <h3>2. Laser Ruby 694 nm</h3>
+
+        <ul>
+          <li><strong>Định nghĩa:</strong> Laser 694 nm (ánh sáng đỏ), hấp thụ mạnh melanin và sắc tố mực tối/lạnh, hiệu quả với sắc tố nông.</li>
+          <li><strong>Đặc điểm:</strong> Tác động nông–trung bình; hấp thụ mạnh melanin; thường dùng Q-switched để phá vỡ sắc tố; xuyên thấu kém hơn 1064 nm.</li>
+          <li><strong>Ứng dụng:</strong> Xoá mực xanh dương, xanh lá, đen; điều trị sắc tố nông (tàn nhang, đốm nâu, lentigo...).</li>
+          <li><strong>Ưu điểm:</strong> Hiệu quả cao với sắc tố nông và màu lạnh; xử lý tốt tổn thương sắc tố biểu bì; hiệu quả với mực xanh khó xử lý.</li>
+          <li><strong>Hạn chế:</strong> Nguy cơ rối loạn sắc tố cao ở da tối màu; không phù hợp da Fitzpatrick cao; kém hiệu quả với mực đỏ/cam/vàng; có thể gây bỏng nếu thao tác sai.</li>
+        </ul>
+
+        <h3>3. Laser Pico</h3>
+
+        <ul>
+          <li><strong>Định nghĩa:</strong> Laser Pico (Nd:YAG, Alexandrite) sử dụng xung cực ngắn (picosecond), xử lý hiệu quả đa màu mực.</li>
+          <li><strong>Đặc điểm:</strong> Xung cực ngắn; phá vỡ hạt mực rất nhỏ; giảm tổn thương nhiệt.</li>
+          <li><strong>Ứng dụng:</strong> Công nghệ hiện đại trong xóa mực đa màu (đen, đỏ, xanh).</li>
+          <li><strong>Ưu điểm:</strong> Hiệu quả cao đa màu; ít tổn thương nhiệt; phục hồi nhanh; giảm nguy cơ rối loạn sắc tố; có thể giảm số buổi.</li>
+          <li><strong>Hạn chế:</strong> Chi phí cao; vẫn cần nhiều buổi với mực sâu; phụ thuộc cơ địa &amp; loại mực; yêu cầu kỹ thuật cao.</li>
+        </ul>
+
+        <div class="blog-image">
+          <div class="img-placeholder">tialaser_image_5.jpg</div>
+        </div>
+
+        <!-- ====== SECTION V ====== -->
+        <h2>V. Bảng So Sánh Các Loại Laser</h2>
+
+        <div class="laser-table-wrapper">
+          <table class="laser-table">
+            <thead>
+              <tr>
+                <th>Loại laser</th>
+                <th>Bước sóng</th>
+                <th>Độ xuyên thấu</th>
+                <th>Màu mực hiệu quả</th>
+                <th>Ưu điểm</th>
+                <th>Hạn chế</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nd:YAG 1064 nm</td>
+                <td>1064 nm</td>
+                <td>Sâu</td>
+                <td>Đen, xanh đậm</td>
+                <td>An toàn cho da tối, ít ảnh hưởng bề mặt, hiệu quả mực tối</td>
+                <td>Kém với đỏ/cam/vàng, cần nhiều buổi</td>
+              </tr>
+              <tr>
+                <td>Nd:YAG 532 nm</td>
+                <td>532 nm</td>
+                <td>Nông</td>
+                <td>Đỏ, cam, hồng</td>
+                <td>Hiệu quả cao với màu nóng, chỉnh mực trổ đỏ tốt</td>
+                <td>Dễ ảnh hưởng sắc tố bề mặt, không tốt cho mực sâu</td>
+              </tr>
+              <tr>
+                <td>Alexandrite</td>
+                <td>755 nm</td>
+                <td>Trung bình</td>
+                <td>Xanh dương, xanh lá</td>
+                <td>Tốt với màu lạnh khó xử lý</td>
+                <td>Kém với mực đen sâu, phụ thuộc loại mực</td>
+              </tr>
+              <tr>
+                <td>Ruby</td>
+                <td>694 nm</td>
+                <td>Nông–trung bình</td>
+                <td>Xanh, đen, sắc tố nông</td>
+                <td>Hiệu quả cao với sắc tố nông, màu lạnh</td>
+                <td>Nguy cơ tăng sắc tố cao ở da tối, không hợp mực nóng</td>
+              </tr>
+              <tr>
+                <td>Pico (Nd:YAG/Alex)</td>
+                <td>Pico (đa bước sóng)</td>
+                <td>Linh hoạt</td>
+                <td>Đa màu (đen, đỏ, xanh)</td>
+                <td>Hiệu quả cao, ít tổn thương nhiệt, phục hồi nhanh</td>
+                <td>Chi phí cao, cần kỹ thuật cao</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ====== HIGHLIGHT / CONCLUSION ====== -->
+        <div class="highlight">
+          <strong>Kết luận:</strong>
+          <ul>
+            <li>Mực đỏ dễ đáp ứng laser nhưng cũng tiềm ẩn nguy cơ rối loạn sắc tố nếu xử lí không đúng kĩ thuật.</li>
+            <li>So với mực đen, mực xanh khó khử hơn, thường cần nhiều buổi chiếu laser hơn.</li>
+            <li>Hiệu quả điều trị phụ thuộc nhiều vào yếu tố như: thành phần mực, kích thước và độ sâu hạt mực, thông số laser, cơ địa và khả năng đào thải sắc tố của khách hàng.</li>
+            <li>Khoảng cách giữa các lần chiếu thường từ 4–6 tuần để da phục hồi, không loại bỏ hoàn toàn mực trong một lần chiếu.</li>
+            <li>Cần lựa chọn bước sóng phù hợp, kiểm soát thông số an toàn và tuân thủ khoảng cách điều trị hợp lí, đặc biệt ở vùng môi nhạy cảm, để đạt kết quả tối ưu và hạn chế biến chứng.</li>
+          </ul>
+        </div>
+
+        <p class="p2">Nguồn: Sưu tầm – Le Sapphire PMU</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <!-- SCRIPTS -->
+  <script src="script/load-components.js"></script>
+  <script src="script/header.js"></script>
+
+</body>
+</html>

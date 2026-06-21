@@ -12,9 +12,9 @@
 
   const leafImages = [
 
-    'asset/leaf1.png',
-    'asset/leaf2.png',
-    'asset/leaf3.png'
+    'asset/cherry1.png',
+    'asset/cherry2.png',
+    'asset/cherry3.png'
 
   ];
 

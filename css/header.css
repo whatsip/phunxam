@@ -24,8 +24,14 @@ header {
   font-family: var(--title-font);
   font-size: 1.8rem;
   letter-spacing: 1px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
+.logo:hover {
+  opacity: 0.8;
+}
 
 .menu-btn {
   width: 34px;

@@ -405,15 +405,16 @@
 <script src="script/cursor.js"></script>
   
   <!-- ================= SLIDER SCRIPT ================= -->
-  <script>
-    const slides = document.getElementById("slides");
-    let index = 0;
+<script>
+  const slides = document.getElementById("slides");
+  const slideItems = slides.querySelectorAll(".slide");
+  let index = 0;
 
-    setInterval(() => {
-      index = (index + 1) % 3;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    }, 4000);
-  </script>
+  setInterval(() => {
+    index = (index + 1) % slideItems.length;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+  }, 4000);
+</script>
   
 </body>
 </html>
